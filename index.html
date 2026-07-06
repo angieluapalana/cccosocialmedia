@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRD — CCCC Website Redevelopment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#C20C0C;
+  --gold:#9F7833;
+  --ink:#111111;
+  --ink-soft:#444444;
+  --ink-faint:#777777;
+  --paper:#FFFFFF;
+  --panel:#FAFAFA;
+  --line:#E8E8E8;
+  --red-tint:#FBEDED;
+  --ok:#1E7A3C;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;font-size:16px}
+::selection{background:#F0F0F0}
+
+.eyebrow{font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+h1,h2,h3{font-family:'Manrope',sans-serif}
+
+.divider{border:none;border-top:1px solid var(--line);margin:1rem 0 1.6rem}
+
+/* Layout */
+.wrap{display:grid;grid-template-columns:250px 1fr;max-width:1200px;margin:0 auto}
+aside{position:sticky;top:0;height:100vh;overflow-y:auto;padding:2.4rem 1.4rem 2rem 2rem;border-right:1px solid var(--line)}
+main{padding:0 3rem 5rem;min-width:0}
+
+/* Sidebar */
+.side-brand{font-family:'Manrope',sans-serif;font-weight:800;font-size:.95rem;line-height:1.3;margin-bottom:.3rem}
+.side-sub{font-size:.68rem;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:1.8rem}
+nav a{display:block;padding:.42rem .7rem;font-size:.83rem;color:var(--ink-soft);text-decoration:none;border-left:2px solid transparent;transition:all .15s}
+nav a:hover{color:var(--ink);background:var(--panel)}
+nav a.active{color:var(--ink);border-left-color:var(--ink);font-weight:600;background:var(--panel)}
+nav .nav-num{font-size:.68rem;color:var(--ink-faint);margin-right:.5rem;font-weight:500}
+
+/* Hero */
+.hero{padding:4rem 0 2.6rem;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:800;line-height:1.12;letter-spacing:-.01em;max-width:20ch;margin-top:.7rem}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2.2rem}
+.meta-cell{background:var(--paper);padding:.9rem 1rem}
+.meta-cell .k{font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;display:block;margin-bottom:.25rem}
+.meta-cell .v{font-size:.87rem;font-weight:600}
+.meta-cell .v small{font-weight:400;color:var(--ink-soft)}
+
+/* Sections */
+section{padding-top:3.2rem;scroll-margin-top:1.2rem}
+section h2{font-size:1.45rem;font-weight:800;letter-spacing:-.01em;margin-top:.4rem}
+section h3{font-size:1.02rem;font-weight:700;margin:1.8rem 0 .7rem}
+section p{color:var(--ink-soft);max-width:68ch;margin-bottom:.9rem}
+section p strong{color:var(--ink)}
+section ul{margin:.4rem 0 1rem 1.2rem;color:var(--ink-soft)}
+section li{margin-bottom:.45rem}
+section li strong{color:var(--ink)}
+section a{color:var(--ink);font-weight:500}
+code{font-family:'Inter',sans-serif;font-size:.9em;background:var(--panel);border:1px solid var(--line);padding:.08em .35em;border-radius:3px}
+
+/* Callout */
+.callout{background:var(--panel);border:1px solid var(--line);padding:1rem 1.2rem;margin:1.2rem 0;max-width:70ch}
+.callout.red{background:var(--red-tint);border-color:#EBC9C9}
+.callout p{margin:0;font-size:.92rem;color:var(--ink)}
+.callout .eyebrow{display:block;margin-bottom:.35rem}
+.callout.red .eyebrow{color:var(--red)}
+
+/* Success criteria */
+.criteria{counter-reset:crit;list-style:none;margin:1.4rem 0 0;padding:0;max-width:70ch}
+.criteria li{counter-increment:crit;display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line);margin:0}
+.criteria li::before{content:counter(crit,decimal-leading-zero);font-size:.78rem;color:var(--ink-faint);font-weight:600;padding-top:.15rem;flex:0 0 auto}
+.criteria li span{color:var(--ink-soft)}
+.criteria li span strong{color:var(--ink)}
+
+/* Scope columns */
+.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.4rem}
+.scope-card{border:1px solid var(--line);background:var(--paper)}
+.scope-card header{padding:.8rem 1.1rem;border-bottom:1px solid var(--line);background:var(--panel);display:flex;align-items:center;gap:.55rem}
+.scope-card.out header{background:var(--red-tint);border-bottom-color:#EBC9C9}
+.scope-card header .dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto;background:var(--ink)}
+.scope-card.out .dot{background:var(--red)}
+.scope-card header span{font-family:'Manrope',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.02em}
+.scope-card.out header span{color:var(--red)}
+.scope-card ul{margin:0;padding:1rem 1.1rem 1rem 2.1rem;font-size:.88rem}
+.scope-card li{margin-bottom:.55rem}
+
+/* Stakeholder table */
+table{width:100%;border-collapse:collapse;margin-top:1.2rem;font-size:.89rem}
+th{font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint);text-align:left;font-weight:600;padding:.55rem .8rem;border-bottom:2px solid var(--ink)}
+td{padding:.7rem .8rem;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
+td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+
+/* Brand tokens */
+.swatch-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin:1.3rem 0}
+.swatch{border:1px solid var(--line)}
+.swatch .chip{height:58px}
+.swatch .lbl{padding:.55rem .7rem}
+.swatch .lbl b{display:block;font-size:.8rem}
+.swatch .lbl code{border:none;background:none;padding:0;font-size:.74rem;color:var(--ink-faint)}
+.type-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.3rem 0;max-width:640px}
+.type-card{border:1px solid var(--line);padding:1rem 1.1rem}
+.type-card .sample{font-size:1.5rem;line-height:1.1;margin-bottom:.5rem}
+.type-card .lbl{font-size:.78rem;color:var(--ink-soft)}
+.type-card .lbl b{color:var(--ink)}
+
+/* Phase timeline */
+.phases{margin-top:1.6rem;border-top:1px solid var(--line)}
+.phase{border-bottom:1px solid var(--line)}
+.phase-head{display:grid;grid-template-columns:64px 1fr 24px;gap:1rem;align-items:center;padding:1rem .4rem;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:inherit;transition:background .15s}
+.phase-head:hover{background:var(--panel)}
+.phase-head:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.phase-num{font-size:.72rem;color:var(--ink-faint);font-weight:600;letter-spacing:.05em}
+.phase-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:.98rem}
+.phase-chev{color:var(--ink-faint);transition:transform .2s;font-size:.8rem;text-align:center}
+.phase.open .phase-chev{transform:rotate(90deg);color:var(--ink)}
+.phase-body{display:none;padding:0 .4rem 1.2rem 80px}
+.phase.open .phase-body{display:block}
+.phase-body .row{display:grid;grid-template-columns:110px 1fr;gap:.8rem;font-size:.88rem;padding:.35rem 0}
+.phase-body .row .k{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;padding-top:.2rem}
+.phase-body .row .v{color:var(--ink-soft)}
+.gate-tag{display:inline-block;font-size:.68rem;letter-spacing:.06em;font-weight:600;background:var(--red-tint);color:var(--red);padding:.2em .6em;border:1px solid #EBC9C9;border-radius:2px}
+
+/* Checklist */
+.progress-bar-wrap{display:flex;align-items:center;gap:1rem;margin:1.3rem 0 .4rem;max-width:70ch}
+.progress-track{flex:1;height:6px;background:var(--panel);border:1px solid var(--line)}
+.progress-fill{height:100%;width:0%;background:var(--ink);transition:width .3s}
+.progress-label{font-size:.76rem;color:var(--ink-soft);font-weight:500;white-space:nowrap}
+.checklist{list-style:none;margin:1rem 0 0;padding:0;max-width:70ch}
+.checklist li{margin:0;border-bottom:1px solid var(--line)}
+.check-item{display:flex;gap:.85rem;align-items:flex-start;width:100%;background:none;border:none;text-align:left;font-family:inherit;font-size:.91rem;padding:.75rem .4rem;cursor:pointer;color:var(--ink-soft);transition:background .15s}
+.check-item:hover{background:var(--panel)}
+.check-item:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.box{flex:0 0 auto;width:18px;height:18px;border:2px solid var(--ink-faint);margin-top:.12rem;display:grid;place-items:center;font-size:.7rem;color:transparent;transition:all .15s}
+.check-item.done .box{background:var(--ok);border-color:var(--ok);color:#fff}
+.check-item.done{color:var(--ink-faint);text-decoration:line-through;text-decoration-color:var(--line)}
+
+/* Reveal animation */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.reveal.vis{opacity:1;transform:none}
+
+footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid var(--line);font-size:.72rem;color:var(--ink-faint)}
+
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr}
+  aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);padding:1.6rem 1.4rem}
+  nav{display:flex;flex-wrap:wrap;gap:.2rem}
+  nav a{border-left:none;border-bottom:2px solid transparent;padding:.3rem .55rem;font-size:.78rem}
+  nav a.active{border-left:none;border-bottom-color:var(--ink)}
+  main{padding:0 1.4rem 4rem}
+  .scope-grid,.type-row{grid-template-columns:1fr}
+  .phase-body{padding-left:.4rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="side-brand">Childcare Culture &amp; Co.</div>
+  <div class="side-sub">PRD · Website Redevelopment</div>
+  <nav id="toc">
+    <a href="#background"><span class="nav-num">01</span>Problem &amp; Background</a>
+    <a href="#success"><span class="nav-num">02</span>Success Criteria</a>
+    <a href="#scope"><span class="nav-num">03</span>Scope</a>
+    <a href="#stakeholders"><span class="nav-num">04</span>Users &amp; Stakeholders</a>
+    <a href="#brand"><span class="nav-num">05</span>Brand &amp; Design</a>
+    <a href="#technical"><span class="nav-num">06</span>Technical Constraints</a>
+    <a href="#phases"><span class="nav-num">07</span>Engagement &amp; Phases</a>
+    <a href="#acceptance"><span class="nav-num">08</span>Acceptance Checklist</a>
+  </nav>
+</aside>
+
+<main>
+
+<div class="hero reveal">
+  <span class="eyebrow">Product Requirements Document · v3 Final for Handoff</span>
+  <h1>CCCC Website Redevelopment</h1>
+  <div class="meta-grid">
+    <div class="meta-cell"><span class="k">Prepared by</span><span class="v">Anj (Angielu Palana)</span></div>
+    <div class="meta-cell"><span class="k">Approver</span><span class="v">Anj <small>on behalf of Cita</small></span></div>
+    <div class="meta-cell"><span class="k">Assigned to</span><span class="v">Mark <small>· hourly @ $6/hr</small></span></div>
+    <div class="meta-cell"><span class="k">Date</span><span class="v">July 3, 2026</span></div>
+  </div>
+</div>
+
+<section id="background" class="reveal">
+  <span class="eyebrow">01 · Problem &amp; Background</span>
+  <h2>Why this project exists</h2>
+  <hr class="divider">
+  <p>Childcare Culture &amp; Co. (CCCC) has completed a brand repositioning under the banner <strong>"Culture Before Everything™."</strong> A six-page HTML design mockup was produced during the rebrand (Home, About, 90-Day Experience, Culture Club, Speaking, Contact) but the live website at <strong>childcarecultureco.com</strong> does not yet reflect the new brand.</p>
+  <p>The site needs to move onto the <strong>GoHighLevel (GHL) website builder</strong> inside the existing CCCC sub-account so that forms, booking, and payments run natively in the platform CCCC already operates on. This project is the build-out of that live site.</p>
+</section>
+
+<section id="success" class="reveal">
+  <span class="eyebrow">02 · Success Criteria</span>
+  <h2>The project is done when all six are true</h2>
+  <hr class="divider">
+  <ol class="criteria">
+    <li><span>All six pages are live on childcarecultureco.com, built in the GHL website builder, matching the approved brand system.</span></li>
+    <li><span>Every form on the site submits into the CCCC GHL sub-account correctly (verified with test submissions).</span></li>
+    <li><span>The booking widget connects to the <strong>15-Min Strategy Call</strong> calendar and test bookings land correctly.</span></li>
+    <li><span>Both membership products have their own separate, working payment checkout, verified with test transactions: <strong>The Culture Club — $99/mo</strong> and <strong>The 90-Day Culture Transformation Experience™ — $297/mo</strong>.</span></li>
+    <li><span>The site is fully responsive (mobile, tablet, desktop) with no broken layouts.</span></li>
+    <li><span>Anj has signed off on each phase (see Section 07) and on final launch. <strong>Nothing is published until sign-off.</strong></span></li>
+  </ol>
+</section>
+
+<section id="scope" class="reveal">
+  <span class="eyebrow">03 · Scope</span>
+  <h2>What's in, what's untouchable</h2>
+  <hr class="divider">
+  <div class="scope-grid">
+    <div class="scope-card in">
+      <header><span class="dot"></span><span>IN SCOPE</span></header>
+      <ul>
+        <li><strong>Six pages</strong> in the GHL website builder: Home · About · The 90-Day Culture Transformation Experience™ · The Culture Club · Speaking · Contact</li>
+        <li><strong>Design direction:</strong> the six-page HTML mockup is the reference, not a pixel-perfect spec. Mark may refine layout and design details, but the brand system is locked (Section 05)</li>
+        <li><strong>Forms wired into GHL:</strong> general contact form (Contact page), speaker inquiry form (Speaking page — separate from the contact form, per mockup), and any opt-in/lead-capture forms present in the mockup</li>
+        <li><strong>Booking widget</strong> connected to the existing <strong>15-Min Strategy Call</strong> GHL calendar — used for all "Schedule Your Culture Strategy Call" CTAs</li>
+        <li><strong>Two separate payment products/checkouts</strong> (Stripe already connected): The Culture Club ($99/mo recurring) and The 90-Day Culture Transformation Experience™ ($297/mo recurring)</li>
+        <li><strong>Redirect handling:</strong> a live "Culture Collective" campaign points a bit.ly link at a page on the current site — that destination must redirect to the 90-Day Experience page at launch so the campaign link doesn't 404</li>
+        <li><strong>Basic on-page QA:</strong> responsive testing, link checking, form/booking/payment test runs</li>
+      </ul>
+    </div>
+    <div class="scope-card out">
+      <header><span class="dot"></span><span>DO NOT TOUCH YET</span></header>
+      <ul>
+        <li>GHL <strong>workflows, automations, pipelines</strong> (including the CCCC sponsorship pipeline), tags, contacts, or email campaigns. The build must not create, edit, or delete any of these except the specific forms/calendar/payment connections listed in scope</li>
+        <li><strong>Domain/DNS</strong> — childcarecultureco.com is on GoDaddy and already connected to GHL. No DNS changes</li>
+        <li>The <strong>Stripe integration itself</strong> — already connected and working. Mark creates products/checkouts on top of it but does not alter the integration</li>
+        <li><strong>Summit 2027</strong> marketing assets, registration pages, or funnels — the Summit nav item links out to the existing page at <a href="https://childcarecultureco.com/bustamove" target="_blank" rel="noopener">childcarecultureco.com/bustamove</a></li>
+        <li><strong>Blog, SEO campaign work, or analytics setup</strong> — can be scoped as a later phase if wanted</li>
+        <li><strong>Copywriting from scratch</strong> — mockup copy is the source of truth; copy changes go through Anj</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="stakeholders" class="reveal">
+  <span class="eyebrow">04 · Users &amp; Stakeholders</span>
+  <h2>Who does what</h2>
+  <hr class="divider">
+  <table>
+    <thead><tr><th>Person</th><th>Role</th><th>Responsibility</th></tr></thead>
+    <tbody>
+      <tr><td>Anj</td><td>Approver / point of contact</td><td>All sign-offs, all questions, phase approvals (on behalf of Cita)</td></tr>
+      <tr><td>Cita (Tacita Bateman)</td><td>Business owner</td><td>Final brand authority (via Anj)</td></tr>
+      <tr><td>Mark</td><td>Developer</td><td>Build, QA, phase estimates</td></tr>
+      <tr><td>Site visitors</td><td>Audience</td><td>Childcare center owners/directors — primary audience for all pages</td></tr>
+    </tbody>
+  </table>
+  <div class="callout red">
+    <span class="eyebrow">Single-threaded communication</span>
+    <p>All questions, blockers, and deliverables go through Anj. Mark does not contact Cita directly.</p>
+  </div>
+</section>
+
+<section id="brand" class="reveal">
+  <span class="eyebrow">05 · Brand &amp; Design Constraints</span>
+  <h2>The brand system is locked</h2>
+  <hr class="divider">
+  <h3>Colors</h3>
+  <div class="swatch-row">
+    <div class="swatch"><div class="chip" style="background:#C20C0C"></div><div class="lbl"><b>Red</b><code>#C20C0C</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#9F7833"></div><div class="lbl"><b>Gold</b><code>#9F7833</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#111111"></div><div class="lbl"><b>Black</b><code>#111111</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--line)"></div><div class="lbl"><b>White</b><code>#FFFFFF</code></div></div>
+  </div>
+  <h3>Typography</h3>
+  <div class="type-row">
+    <div class="type-card"><div class="sample" style="font-family:'Manrope',sans-serif;font-weight:800">Manrope</div><div class="lbl"><b>Display</b> — headlines and display text</div></div>
+    <div class="type-card"><div class="sample" style="font-family:'Inter',sans-serif;font-weight:500">Inter</div><div class="lbl"><b>Body</b> — body copy and subheadlines</div></div>
+  </div>
+  <ul>
+    <li>If exact fonts can't be loaded in the GHL builder, <strong>substitutions require Anj's approval before use</strong>.</li>
+    <li><strong>"Culture Before Everything™"</strong> — trademark symbol included wherever the phrase appears (aspirational styling, applied consistently).</li>
+    <li>Refinements Mark makes must stay inside this system. Anything outside it — new colors, new fonts, tone changes — needs written approval first.</li>
+  </ul>
+</section>
+
+<section id="technical" class="reveal">
+  <span class="eyebrow">06 · Technical Constraints</span>
+  <h2>How it must be built</h2>
+  <hr class="divider">
+  <ul>
+    <li><strong>Platform:</strong> GHL website builder only. No external hosting, no custom-coded standalone site.</li>
+    <li><strong>Custom code blocks</strong> (HTML/CSS embeds) inside the GHL builder are allowed where the native builder can't achieve the design, but should be the exception, not the default — they're harder to maintain after handoff.</li>
+    <li><strong>Image assets</strong> are already uploaded to GHL Media Storage. Mark works from those and flags any missing assets to Anj rather than sourcing his own.</li>
+    <li><strong>Payments:</strong> two separate products built on the existing Stripe connection.</li>
+  </ul>
+  <div class="callout red">
+    <span class="eyebrow">Hard rule</span>
+    <p><strong>Nothing goes live without sign-off.</strong> All pages are built unpublished/staged. The current live site stays untouched until Anj approves launch, at which point the new pages replace it on the same domain.</p>
+  </div>
+</section>
+
+<section id="phases" class="reveal">
+  <span class="eyebrow">07 · Engagement Model &amp; Phases</span>
+  <h2>Six phases, six gates</h2>
+  <hr class="divider">
+  <p><strong>Rate:</strong> $6/hr, hourly. <strong>Deadline:</strong> none fixed — controlled instead by per-phase estimates.</p>
+  <div class="callout">
+    <span class="eyebrow">Budget-control rule</span>
+    <p>Before starting each phase, Mark submits an hour estimate for that phase. Anj approves the estimate. <strong>If actuals will exceed the estimate by more than 20%, Mark stops and flags it before continuing.</strong> This is the budget-control mechanism in place of a fixed cap.</p>
+  </div>
+  <p style="font-size:.85rem;color:var(--ink-faint)">Click a phase to expand its deliverable and sign-off gate.</p>
+
+  <div class="phases">
+    <div class="phase">
+      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 0</span><span class="phase-title">Walkthrough &amp; estimate</span><span class="phase-chev">▸</span></button>
+      <div class="phase-body">
+        <div class="row"><span class="k">Deliverable</span><span class="v">Mark reviews the mockup and GHL sub-account, submits per-phase hour estimates, and flags any feasibility issues.</span></div>
+        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">ANJ APPROVES ESTIMATES</span></span></div>
+      </div>
+    </div>
+    <div class="phase">
+      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 1</span><span class="phase-title">Global elements</span><span class="phase-chev">▸</span></button>
+      <div class="phase-body">
+        <div class="row"><span class="k">Deliverable</span><span class="v">Header, footer, navigation, and brand styles/theme set up in the builder.</span></div>
+        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">ANJ REVIEWS</span></span></div>
+      </div>
+    </div>
+    <div class="phase">
+      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 2</span><span class="phase-title">Page builds</span><span class="phase-chev">▸</span></button>
+      <div class="phase-body">
+        <div class="row"><span class="k">Deliverable</span><span class="v">All six pages built (unpublished), desktop and mobile.</span></div>
+        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">ANJ REVIEWS EACH PAGE</span></span></div>
+      </div>
+    </div>
+    <div class="phase">
+      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 3</span><span class="phase-title">Functionality wiring</span><span class="phase-chev">▸</span></button>
+      <div class="phase-body">
+        <div class="row"><span class="k">Deliverable</span><span class="v">Forms → GHL, booking widget → 15-Min Strategy Call calendar, both payment checkouts.</span></div>
+        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">BUILT &amp; READY FOR TESTING</span></span></div>
+      </div>
+    </div>
+    <div class="phase">
+      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 4</span><span class="phase-title">QA &amp; test runs</span><span class="phase-chev">▸</span></button>
+      <div class="phase-body">
+        <div class="row"><span class="k">Deliverable</span><span class="v">Test-mode form submissions, test bookings, test transactions on both checkouts; cross-device check, link check, redirect check, final punch list.</span></div>
+        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">ANJ VERIFIES ALL TESTS PASS</span></span></div>
+      </div>
+    </div>
+    <div class="phase">
+      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 5</span><span class="phase-title">Launch</span><span class="phase-chev">▸</span></button>
+      <div class="phase-body">
+        <div class="row"><span class="k">Deliverable</span><span class="v">Pages published to childcarecultureco.com, replacing the current site; Culture Collective campaign redirect live; post-launch smoke test.</span></div>
+        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">ANJ FINAL SIGN-OFF</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Revisions &amp; change requests</h3>
+  <p>Revisions within an approved phase's scope are included in that phase's hours. New requests after a phase is signed off are logged as change requests with their own estimate.</p>
+  <h3>Post-launch support</h3>
+  <p>Mark may be retained at the same hourly rate for post-launch fixes if needed, but continued engagement after launch is <strong>not guaranteed</strong> and carries no committed support window.</p>
+</section>
+
+<section id="acceptance" class="reveal">
+  <span class="eyebrow">08 · Acceptance Checklist</span>
+  <h2>Final launch gate</h2>
+  <hr class="divider">
+  <p>Every item below must be checked before Phase 5 launch is approved. Tap items to track progress during the final review (progress resets on page reload).</p>
+  <div class="progress-bar-wrap">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-label" id="progressLabel">0 / 11 complete</span>
+  </div>
+  <ul class="checklist" id="checklist">
+    <li><button class="check-item"><span class="box">✓</span><span>All six pages match approved designs on desktop and mobile</span></button></li>
+    <li><button class="check-item"><span class="box">✓</span><span>All forms tested — submissions arrive in GHL with correct attribution</span></button></li>
+    <li><button class="check-item"><span class="box">✓</span><span>Speaker inquiry form tested separately from contact form</span></button></li>
+    <li><button class="check-item"><span class="box">✓</span><span>Booking widget tested — test booking appears on the 15-Min Strategy Call calendar</span></button></li>
+    <li><button class="check-item"><span class="box">✓</span><span>Culture Club ($99/mo) checkout tested end-to-end</span></button></li>
+    <li><button class="check-item"><span class="box">✓</span><span>90-Day Culture Transformation Experience™ ($297/mo) checkout tested end-to-end</span></button></li>
+    <li><button class="check-item"><span class="box">✓</span><span>Culture Collective campaign redirect resolves to the 90-Day Experience page</span></button></li>
+    <li><button class="check-item"><span class="box">✓</span><span>No broken links; no console errors on any page</span></button></li>
+    <li><button class="check-item"><span class="box">✓</span><span>"Culture Before Everything™" renders with ™ everywhere it appears</span></button></li>
+    <li><button class="check-item"><span class="box">✓</span><span>No workflows, pipelines, or tags modified outside the agreed connections</span></button></li>
+    <li><button class="check-item"><span class="box">✓</span><span>Anj final sign-off recorded</span></button></li>
+  </ul>
+</section>
+
+<footer>PRD v3 · Final for handoff · Childcare Culture &amp; Co. · Prepared by Angielu Palana · July 3, 2026</footer>
+
+</main>
+</div>
+
+<script>
+// Phase accordion
+document.querySelectorAll('.phase-head').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const phase = btn.parentElement;
+    const open = phase.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+});
+
+// Checklist progress (in-memory only)
+const items = document.querySelectorAll('.check-item');
+const fill = document.getElementById('progressFill');
+const label = document.getElementById('progressLabel');
+function updateProgress(){
+  const done = document.querySelectorAll('.check-item.done').length;
+  fill.style.width = (done/items.length*100)+'%';
+  label.textContent = done+' / '+items.length+' complete';
+}
+items.forEach(it=>it.addEventListener('click',()=>{ it.classList.toggle('done'); updateProgress(); }));
+
+// Scroll-spy
+const links = document.querySelectorAll('#toc a');
+const sections = [...links].map(a=>document.querySelector(a.getAttribute('href')));
+const spy = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>s&&spy.observe(s));
+
+// Scroll reveal
+const rev = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vis'); rev.unobserve(e.target); } });
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>rev.observe(el));
+</script>
+</body>
+</html>
