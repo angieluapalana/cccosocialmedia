@@ -3,437 +3,739 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PRD — CCCC Website Redevelopment</title>
+<title>PRD — CCCC Organic Social Media Content Program</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --red:#C20C0C;
-  --gold:#9F7833;
-  --ink:#111111;
-  --ink-soft:#444444;
-  --ink-faint:#777777;
-  --paper:#FFFFFF;
-  --panel:#FAFAFA;
-  --line:#E8E8E8;
-  --red-tint:#FBEDED;
-  --ok:#1E7A3C;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;font-size:16px}
-::selection{background:#F0F0F0}
+  :root{
+    --red:#C20C0C; --gold:#9F7833; --black:#111111; --white:#FFFFFF;
+    --ink:#1c1c1c; --muted:#5f5f5f; --line:#e6e2dc; --bg-soft:#faf9f7;
+    --maxw:860px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--white);line-height:1.65;font-size:15.5px}
+  h1,h2,h3{font-family:'Manrope',sans-serif;color:var(--black);line-height:1.2}
+  h1{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.02em}
+  h2{font-size:22px;font-weight:800;letter-spacing:-.01em}
+  h3{font-size:16px;font-weight:700}
+  p{margin-bottom:12px}
+  strong{font-weight:600;color:var(--black)}
+  hr{border:none;border-top:1px solid var(--line);margin:22px 0}
+  a{color:var(--red);text-decoration:none}
+  a:hover{text-decoration:underline}
 
-.eyebrow{font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
-h1,h2,h3{font-family:'Manrope',sans-serif}
+  .layout{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+  /* ---------- Sidebar ---------- */
+  aside{border-right:1px solid var(--line);padding:34px 20px;position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--bg-soft)}
+  .side-brand{font-family:'Manrope',sans-serif;font-weight:800;font-size:14px;color:var(--black);margin-bottom:2px}
+  .side-sub{font-size:11.5px;color:var(--gold);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:26px}
+  nav a.toc{display:block;font-size:13px;color:var(--muted);padding:7px 10px;border-left:2px solid transparent;margin-bottom:2px;border-radius:0 6px 6px 0}
+  nav a.toc:hover{color:var(--black);text-decoration:none;background:#f1ede7}
+  nav a.toc.active{color:var(--red);border-left-color:var(--red);font-weight:600;background:#fdf3f3}
+  .side-meta{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+  .side-meta b{color:var(--black);font-weight:600}
+  .status-pill{display:inline-block;background:var(--black);color:var(--white);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:14px}
 
-.divider{border:none;border-top:1px solid var(--line);margin:1rem 0 1.6rem}
+  /* ---------- Main ---------- */
+  main{padding:44px 40px 90px;max-width:var(--maxw)}
+  header.doc{margin-bottom:30px}
+  .eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .doc-meta{font-size:13px;color:var(--muted);margin-top:12px}
+  .changelog{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 18px;font-size:13.5px;color:var(--muted);margin-top:20px}
+  .changelog b{color:var(--black)}
 
-/* Layout */
-.wrap{display:grid;grid-template-columns:250px 1fr;max-width:1200px;margin:0 auto}
-aside{position:sticky;top:0;height:100vh;overflow-y:auto;padding:2.4rem 1.4rem 2rem 2rem;border-right:1px solid var(--line)}
-main{padding:0 3rem 5rem;min-width:0}
+  section{padding:34px 0;border-top:1px solid var(--line);scroll-margin-top:24px}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+  .sec-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;color:var(--red)}
 
-/* Sidebar */
-.side-brand{font-family:'Manrope',sans-serif;font-weight:800;font-size:.95rem;line-height:1.3;margin-bottom:.3rem}
-.side-sub{font-size:.68rem;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:1.8rem}
-nav a{display:block;padding:.42rem .7rem;font-size:.83rem;color:var(--ink-soft);text-decoration:none;border-left:2px solid transparent;transition:all .15s}
-nav a:hover{color:var(--ink);background:var(--panel)}
-nav a.active{color:var(--ink);border-left-color:var(--ink);font-weight:600;background:var(--panel)}
-nav .nav-num{font-size:.68rem;color:var(--ink-faint);margin-right:.5rem;font-weight:500}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:14px 0 18px}
+  th{font-family:'Manrope',sans-serif;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:left;padding:9px 12px;border-bottom:2px solid var(--black)}
+  td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:hover td{background:var(--bg-soft)}
+  .hero-tier td:first-child{font-weight:600;color:var(--black)}
 
-/* Hero */
-.hero{padding:4rem 0 2.6rem;border-bottom:1px solid var(--line)}
-.hero h1{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:800;line-height:1.12;letter-spacing:-.01em;max-width:20ch;margin-top:.7rem}
-.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2.2rem}
-.meta-cell{background:var(--paper);padding:.9rem 1rem}
-.meta-cell .k{font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;display:block;margin-bottom:.25rem}
-.meta-cell .v{font-size:.87rem;font-weight:600}
-.meta-cell .v small{font-weight:400;color:var(--ink-soft)}
+  ul.clean{list-style:none;margin:0 0 14px}
+  ul.clean li{padding:7px 0 7px 22px;position:relative}
+  ul.clean li::before{content:"";position:absolute;left:4px;top:15px;width:7px;height:7px;background:var(--gold);border-radius:2px}
+  ol.steps{margin:0 0 14px 20px}
+  ol.steps li{padding:5px 0}
 
-/* Sections */
-section{padding-top:3.2rem;scroll-margin-top:1.2rem}
-section h2{font-size:1.45rem;font-weight:800;letter-spacing:-.01em;margin-top:.4rem}
-section h3{font-size:1.02rem;font-weight:700;margin:1.8rem 0 .7rem}
-section p{color:var(--ink-soft);max-width:68ch;margin-bottom:.9rem}
-section p strong{color:var(--ink)}
-section ul{margin:.4rem 0 1rem 1.2rem;color:var(--ink-soft)}
-section li{margin-bottom:.45rem}
-section li strong{color:var(--ink)}
-section a{color:var(--ink);font-weight:500}
-code{font-family:'Inter',sans-serif;font-size:.9em;background:var(--panel);border:1px solid var(--line);padding:.08em .35em;border-radius:3px}
+  .callout{border-left:3px solid var(--red);background:#fdf3f3;padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14px}
+  .callout.gold{border-left-color:var(--gold);background:#faf6ef}
+  .callout .lab{font-family:'Manrope',sans-serif;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:5px}
+  .callout .lab.r{color:var(--red)} .callout .lab.g{color:var(--gold)}
 
-/* Callout */
-.callout{background:var(--panel);border:1px solid var(--line);padding:1rem 1.2rem;margin:1.2rem 0;max-width:70ch}
-.callout.red{background:var(--red-tint);border-color:#EBC9C9}
-.callout p{margin:0;font-size:.92rem;color:var(--ink)}
-.callout .eyebrow{display:block;margin-bottom:.35rem}
-.callout.red .eyebrow{color:var(--red)}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+  .scope-card{border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .scope-card h3{margin-bottom:10px;font-size:13px;text-transform:uppercase;letter-spacing:.07em}
+  .scope-card.in h3{color:var(--black)} .scope-card.out h3{color:var(--muted)}
+  .scope-card ul{list-style:none}
+  .scope-card li{font-size:13.5px;padding:5px 0 5px 20px;position:relative;color:var(--ink)}
+  .scope-card.in li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700}
+  .scope-card.out li::before{content:"—";position:absolute;left:0;color:var(--muted)}
 
-/* Success criteria */
-.criteria{counter-reset:crit;list-style:none;margin:1.4rem 0 0;padding:0;max-width:70ch}
-.criteria li{counter-increment:crit;display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line);margin:0}
-.criteria li::before{content:counter(crit,decimal-leading-zero);font-size:.78rem;color:var(--ink-faint);font-weight:600;padding-top:.15rem;flex:0 0 auto}
-.criteria li span{color:var(--ink-soft)}
-.criteria li span strong{color:var(--ink)}
+  /* Accordion */
+  .acc{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden;background:var(--white)}
+  .acc-head{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;background:var(--white);border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;color:var(--black);text-align:left}
+  .acc-head:hover{background:var(--bg-soft)}
+  .acc-head .when{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--gold);white-space:nowrap}
+  .acc-head .chev{color:var(--muted);transition:transform .2s ease;flex:none}
+  .acc.open .chev{transform:rotate(90deg)}
+  .acc-body{display:none;padding:2px 18px 16px;font-size:14px;color:var(--ink);border-top:1px solid var(--line)}
+  .acc.open .acc-body{display:block;padding-top:14px}
 
-/* Scope columns */
-.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.4rem}
-.scope-card{border:1px solid var(--line);background:var(--paper)}
-.scope-card header{padding:.8rem 1.1rem;border-bottom:1px solid var(--line);background:var(--panel);display:flex;align-items:center;gap:.55rem}
-.scope-card.out header{background:var(--red-tint);border-bottom-color:#EBC9C9}
-.scope-card header .dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto;background:var(--ink)}
-.scope-card.out .dot{background:var(--red)}
-.scope-card header span{font-family:'Manrope',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.02em}
-.scope-card.out header span{color:var(--red)}
-.scope-card ul{margin:0;padding:1rem 1.1rem 1rem 2.1rem;font-size:.88rem}
-.scope-card li{margin-bottom:.55rem}
+  /* Brand strip */
+  .brand-strip{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
+  .swatch{width:120px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .swatch .chip{height:46px}
+  .swatch .lab{font-size:11px;padding:7px 10px;color:var(--muted)}
+  .swatch .lab b{display:block;color:var(--black);font-size:11.5px}
+  .type-spec{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:6px 0 14px}
+  .type-spec .man{font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;color:var(--black)}
+  .type-spec .int{font-size:13.5px;color:var(--muted);margin-top:4px}
 
-/* Stakeholder table */
-table{width:100%;border-collapse:collapse;margin-top:1.2rem;font-size:.89rem}
-th{font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint);text-align:left;font-weight:600;padding:.55rem .8rem;border-bottom:2px solid var(--ink)}
-td{padding:.7rem .8rem;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
-td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+  /* Ladder */
+  .ladder{display:flex;flex-direction:column;gap:0;margin:16px 0;border-left:2px solid var(--line);padding-left:22px}
+  .rung{position:relative;padding:10px 0 16px}
+  .rung::before{content:"";position:absolute;left:-27px;top:16px;width:10px;height:10px;border-radius:50%;background:var(--red)}
+  .rung .depth{font-family:'Manrope',sans-serif;font-weight:800;color:var(--red);font-size:15px}
+  .rung .note{font-size:13px;color:var(--muted)}
+  .rung:last-child .depth{color:var(--black)}
+  .rung:last-child::before{background:var(--black)}
 
-/* Brand tokens */
-.swatch-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin:1.3rem 0}
-.swatch{border:1px solid var(--line)}
-.swatch .chip{height:58px}
-.swatch .lbl{padding:.55rem .7rem}
-.swatch .lbl b{display:block;font-size:.8rem}
-.swatch .lbl code{border:none;background:none;padding:0;font-size:.74rem;color:var(--ink-faint)}
-.type-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.3rem 0;max-width:640px}
-.type-card{border:1px solid var(--line);padding:1rem 1.1rem}
-.type-card .sample{font-size:1.5rem;line-height:1.1;margin-bottom:.5rem}
-.type-card .lbl{font-size:.78rem;color:var(--ink-soft)}
-.type-card .lbl b{color:var(--ink)}
+  /* Checklist */
+  .progress-wrap{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+  .progress-lab{display:flex;justify-content:space-between;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:8px}
+  .bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+  .bar-fill{height:100%;width:0%;background:var(--red);border-radius:6px;transition:width .25s ease}
+  .check{display:flex;gap:12px;align-items:flex-start;padding:11px 14px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;background:var(--white)}
+  .check:hover{background:var(--bg-soft)}
+  .check .box{flex:none;width:20px;height:20px;border:2px solid var(--gold);border-radius:6px;margin-top:1px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:12px;font-weight:800}
+  .check.done .box{background:var(--red);border-color:var(--red)}
+  .check.done .txt{color:var(--muted);text-decoration:line-through}
+  .check .txt{font-size:14px}
+  .check .txt b{font-weight:600;color:var(--black)}
+  .check.done .txt b{color:var(--muted)}
+  .checklist-note{font-size:12px;color:var(--muted);margin-top:10px}
 
-/* Phase timeline */
-.phases{margin-top:1.6rem;border-top:1px solid var(--line)}
-.phase{border-bottom:1px solid var(--line)}
-.phase-head{display:grid;grid-template-columns:64px 1fr 24px;gap:1rem;align-items:center;padding:1rem .4rem;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:inherit;transition:background .15s}
-.phase-head:hover{background:var(--panel)}
-.phase-head:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
-.phase-num{font-size:.72rem;color:var(--ink-faint);font-weight:600;letter-spacing:.05em}
-.phase-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:.98rem}
-.phase-chev{color:var(--ink-faint);transition:transform .2s;font-size:.8rem;text-align:center}
-.phase.open .phase-chev{transform:rotate(90deg);color:var(--ink)}
-.phase-body{display:none;padding:0 .4rem 1.2rem 80px}
-.phase.open .phase-body{display:block}
-.phase-body .row{display:grid;grid-template-columns:110px 1fr;gap:.8rem;font-size:.88rem;padding:.35rem 0}
-.phase-body .row .k{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;padding-top:.2rem}
-.phase-body .row .v{color:var(--ink-soft)}
-.gate-tag{display:inline-block;font-size:.68rem;letter-spacing:.06em;font-weight:600;background:var(--red-tint);color:var(--red);padding:.2em .6em;border:1px solid #EBC9C9;border-radius:2px}
+  footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 
-/* Checklist */
-.progress-bar-wrap{display:flex;align-items:center;gap:1rem;margin:1.3rem 0 .4rem;max-width:70ch}
-.progress-track{flex:1;height:6px;background:var(--panel);border:1px solid var(--line)}
-.progress-fill{height:100%;width:0%;background:var(--ink);transition:width .3s}
-.progress-label{font-size:.76rem;color:var(--ink-soft);font-weight:500;white-space:nowrap}
-.checklist{list-style:none;margin:1rem 0 0;padding:0;max-width:70ch}
-.checklist li{margin:0;border-bottom:1px solid var(--line)}
-.check-item{display:flex;gap:.85rem;align-items:flex-start;width:100%;background:none;border:none;text-align:left;font-family:inherit;font-size:.91rem;padding:.75rem .4rem;cursor:pointer;color:var(--ink-soft);transition:background .15s}
-.check-item:hover{background:var(--panel)}
-.check-item:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
-.box{flex:0 0 auto;width:18px;height:18px;border:2px solid var(--ink-faint);margin-top:.12rem;display:grid;place-items:center;font-size:.7rem;color:transparent;transition:all .15s}
-.check-item.done .box{background:var(--ok);border-color:var(--ok);color:#fff}
-.check-item.done{color:var(--ink-faint);text-decoration:line-through;text-decoration-color:var(--line)}
-
-/* Reveal animation */
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
-.reveal.vis{opacity:1;transform:none}
-
-footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid var(--line);font-size:.72rem;color:var(--ink-faint)}
-
-@media (max-width:860px){
-  .wrap{grid-template-columns:1fr}
-  aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);padding:1.6rem 1.4rem}
-  nav{display:flex;flex-wrap:wrap;gap:.2rem}
-  nav a{border-left:none;border-bottom:2px solid transparent;padding:.3rem .55rem;font-size:.78rem}
-  nav a.active{border-left:none;border-bottom-color:var(--ink)}
-  main{padding:0 1.4rem 4rem}
-  .scope-grid,.type-row{grid-template-columns:1fr}
-  .phase-body{padding-left:.4rem}
-}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .reveal{opacity:1;transform:none;transition:none}
-  *{transition:none!important}
-}
+  @media(max-width:820px){
+    .layout{grid-template-columns:1fr}
+    aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);padding:22px 20px}
+    nav{display:flex;flex-wrap:wrap;gap:6px}
+    nav a.toc{border-left:none;border:1px solid var(--line);border-radius:20px;padding:5px 12px;font-size:12px}
+    nav a.toc.active{border-color:var(--red)}
+    .side-meta{display:none}
+    main{padding:28px 20px 70px}
+    .two-col{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .bar-fill,.acc-head .chev{transition:none}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-
+<div class="layout">
 <aside>
   <div class="side-brand">Childcare Culture &amp; Co.</div>
-  <div class="side-sub">PRD · Website Redevelopment</div>
+  <div class="side-sub">Culture Before Everything™</div>
   <nav id="toc">
-    <a href="#background"><span class="nav-num">01</span>Problem &amp; Background</a>
-    <a href="#success"><span class="nav-num">02</span>Success Criteria</a>
-    <a href="#scope"><span class="nav-num">03</span>Scope</a>
-    <a href="#stakeholders"><span class="nav-num">04</span>Users &amp; Stakeholders</a>
-    <a href="#brand"><span class="nav-num">05</span>Brand &amp; Design</a>
-    <a href="#technical"><span class="nav-num">06</span>Technical Constraints</a>
-    <a href="#phases"><span class="nav-num">07</span>Engagement &amp; Phases</a>
-    <a href="#acceptance"><span class="nav-num">08</span>Acceptance Checklist</a>
+    <a class="toc" href="#s1">1 · Problem</a>
+    <a class="toc" href="#s2">2 · Goals &amp; Success Criteria</a>
+    <a class="toc" href="#s3">3 · Scope</a>
+    <a class="toc" href="#s4">4 · Content &amp; Channel Strategy</a>
+    <a class="toc" href="#s5">5 · Cadence &amp; Approval</a>
+    <a class="toc" href="#s6">6 · Conversion Infrastructure</a>
+    <a class="toc" href="#s7">7 · Measurement</a>
+    <a class="toc" href="#s8">8 · Paid Coordination</a>
+    <a class="toc" href="#s9">9 · Timeline</a>
+    <a class="toc" href="#s10">10 · Acceptance Checklist</a>
+    <a class="toc" href="#sA">A · August Calendar</a>
   </nav>
+  <div class="side-meta">
+    <div class="status-pill">Signed Off</div>
+    <p><b>Version</b> 3 · Jul 6, 2026</p>
+    <p><b>Owner</b> Anj (Angielu Palana)</p>
+    <p><b>Approver</b> Cita (Tacita Bateman)</p>
+  </div>
 </aside>
 
 <main>
+<header class="doc">
+  <div class="eyebrow">Product Requirements Document</div>
+  <h1>Organic Social Media Content Program</h1>
+  <div class="doc-meta">Childcare Culture &amp; Co. · July 2026 → March 2027 · Facebook, Instagram, LinkedIn</div>
+  <div class="changelog"><b>v3 changes:</b> Ticket pricing added from the live page (6 tiers, $297–$2,490). Team passes set as the primary path to 100 attendees. Holiday promos confirmed as Summit-tickets-only, structured as a descending 10–40% ladder. Organic share confirmed at 30 attendees. Paid-track realignment assigned to Anj. Expired ticket-page banners flagged as a blocking Week 1 fix. <b>Status: signed off — no open items.</b></div>
+</header>
 
-<div class="hero reveal">
-  <span class="eyebrow">Product Requirements Document · v3 Final for Handoff</span>
-  <h1>CCCC Website Redevelopment</h1>
-  <div class="meta-grid">
-    <div class="meta-cell"><span class="k">Prepared by</span><span class="v">Anj (Angielu Palana)</span></div>
-    <div class="meta-cell"><span class="k">Approver</span><span class="v">Anj <small>on behalf of Cita</small></span></div>
-    <div class="meta-cell"><span class="k">Assigned to</span><span class="v">Mark <small>· hourly @ $6/hr</small></span></div>
-    <div class="meta-cell"><span class="k">Date</span><span class="v">July 3, 2026</span></div>
-  </div>
-</div>
-
-<section id="background" class="reveal">
-  <span class="eyebrow">01 · Problem &amp; Background</span>
-  <h2>Why this project exists</h2>
-  <hr class="divider">
-  <p>Childcare Culture &amp; Co. (CCCC) has completed a brand repositioning under the banner <strong>"Culture Before Everything™."</strong> A six-page HTML design mockup was produced during the rebrand (Home, About, 90-Day Experience, Culture Club, Speaking, Contact) but the live website at <strong>childcarecultureco.com</strong> does not yet reflect the new brand.</p>
-  <p>The site needs to move onto the <strong>GoHighLevel (GHL) website builder</strong> inside the existing CCCC sub-account so that forms, booking, and payments run natively in the platform CCCC already operates on. This project is the build-out of that live site.</p>
+<section id="s1">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Problem Statement</h2></div>
+  <p>CCCC needs to grow audience and reach on social media to drive ticket sales for the <strong>Childcare Culture Shock Summit</strong> (Bust A Move 2027, Hot Springs AR, March 2027), with <strong>100 attendees committed by December 31, 2026</strong>. The content performance report documented three failures in the current organic presence:</p>
+  <ul class="clean">
+    <li><strong>Zero link clicks</strong> — content earns reach but converts nobody. The pipeline from post to Summit page is broken.</li>
+    <li><strong>LinkedIn completely unused</strong> — the best channel for reaching childcare directors and owners has no presence.</li>
+    <li><strong>No consistent publishing system</strong> — posting is ad hoc, not calendar-driven, with no repurposing pipeline.</li>
+  </ul>
+  <p>There is also a channel imbalance: <strong>Facebook has 10k+ followers while Instagram has ~100</strong>. FB is the reach engine; IG is a cold-start rebuild.</p>
+  <div class="callout"><span class="lab r">Blocking issue found</span>The live ticket page currently displays an <strong>expired Juneteenth sale banner</strong> (ended Jun 30) alongside a "flash sale 8PM–12AM" banner. Driving traffic to a page showing a dead sale destroys trust at the moment of purchase. Fixed in Week 1 before any promotion begins.</div>
 </section>
 
-<section id="success" class="reveal">
-  <span class="eyebrow">02 · Success Criteria</span>
-  <h2>The project is done when all six are true</h2>
-  <hr class="divider">
-  <ol class="criteria">
-    <li><span>All six pages are live on childcarecultureco.com, built in the GHL website builder, matching the approved brand system.</span></li>
-    <li><span>Every form on the site submits into the CCCC GHL sub-account correctly (verified with test submissions).</span></li>
-    <li><span>The booking widget connects to the <strong>15-Min Strategy Call</strong> calendar and test bookings land correctly.</span></li>
-    <li><span>Both membership products have their own separate, working payment checkout, verified with test transactions: <strong>The Culture Club — $99/mo</strong> and <strong>The 90-Day Culture Transformation Experience™ — $297/mo</strong>.</span></li>
-    <li><span>The site is fully responsive (mobile, tablet, desktop) with no broken layouts.</span></li>
-    <li><span>Anj has signed off on each phase (see Section 07) and on final launch. <strong>Nothing is published until sign-off.</strong></span></li>
-  </ol>
+<section id="s2">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Goals &amp; Success Criteria</h2></div>
+  <p><strong>Primary goal:</strong> 100 Summit attendees committed by Dec 31, 2026 (paid + organic). <strong>Organic owns 30 attendees</strong>, tracked by UTM attribution.</p>
+  <p><strong>Attendees ≠ transactions.</strong> Team passes multiply headcount — organic's 30 attendees could be as few as 6–10 transactions if team tiers convert:</p>
+  <table>
+    <tr><th>Tier</th><th>Price</th><th>Seats</th><th>Per-seat</th></tr>
+    <tr><td>First Move Pass</td><td>$297</td><td>1</td><td>$297</td></tr>
+    <tr><td>Power Move Pass</td><td>$397</td><td>1</td><td>$397</td></tr>
+    <tr><td>Boss Move VIP Pass</td><td>$597</td><td>1</td><td>$597</td></tr>
+    <tr class="hero-tier"><td>Team Move Pass</td><td>$897</td><td>3</td><td>$299</td></tr>
+    <tr class="hero-tier"><td>Team Culture Pass</td><td>$1,395</td><td>5</td><td>$279</td></tr>
+    <tr class="hero-tier"><td>Leadership Shift Pass</td><td>$2,490</td><td>10</td><td>$249</td></tr>
+  </table>
+  <div class="callout gold"><span class="lab g">Strategic note</span>Team tiers lead all offer content. The "Culture Before Everything™" thesis is the team-pass pitch: culture doesn't change when one director attends alone — it changes when the team comes.</div>
+  <table>
+    <tr><th>Metric</th><th>Baseline (Jul 2026)</th><th>Target (Dec 31, 2026)</th></tr>
+    <tr><td>Organic-attributed attendees (UTM)</td><td>0</td><td><strong>30</strong></td></tr>
+    <tr><td>Link clicks / month</td><td>0</td><td>150+/mo by Sep · 400+/mo Nov–Dec</td></tr>
+    <tr><td>Facebook monthly reach</td><td>10k+ followers (baseline pulled Wk 1)</td><td>+50% vs measured July baseline</td></tr>
+    <tr><td>Instagram followers</td><td>~100</td><td>1,000+</td></tr>
+    <tr><td>LinkedIn (Cita personal)</td><td>Unused</td><td>3 posts/wk sustained · engaged director audience</td></tr>
+    <tr><td>Email signups from organic</td><td>0 tracked</td><td>Tracked via UTM from Aug; target set after first month</td></tr>
+    <tr><td>Publishing consistency</td><td>Ad hoc</td><td>≥95% of approved calendar on schedule</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--muted)">Pace check: from zero link clicks today, first organic sales realistically land late Aug–Sep — implying ~25 attendees/month Sep–Dec across all channels. Aggressive, and dependent on the Week 1 infrastructure fix shipping on time. Secondary goal: position Cita as the executive culture-transformation authority (supports the 90-Day Experience™ and Culture Club as a byproduct).</p>
 </section>
 
-<section id="scope" class="reveal">
-  <span class="eyebrow">03 · Scope</span>
-  <h2>What's in, what's untouchable</h2>
-  <hr class="divider">
-  <div class="scope-grid">
+<section id="s3">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Scope</h2></div>
+  <div class="two-col">
     <div class="scope-card in">
-      <header><span class="dot"></span><span>IN SCOPE</span></header>
+      <h3>In scope</h3>
       <ul>
-        <li><strong>Six pages</strong> in the GHL website builder: Home · About · The 90-Day Culture Transformation Experience™ · The Culture Club · Speaking · Contact</li>
-        <li><strong>Design direction:</strong> the six-page HTML mockup is the reference, not a pixel-perfect spec. Mark may refine layout and design details, but the brand system is locked (Section 05)</li>
-        <li><strong>Forms wired into GHL:</strong> general contact form (Contact page), speaker inquiry form (Speaking page — separate from the contact form, per mockup), and any opt-in/lead-capture forms present in the mockup</li>
-        <li><strong>Booking widget</strong> connected to the existing <strong>15-Min Strategy Call</strong> GHL calendar — used for all "Schedule Your Culture Strategy Call" CTAs</li>
-        <li><strong>Two separate payment products/checkouts</strong> (Stripe already connected): The Culture Club ($99/mo recurring) and The 90-Day Culture Transformation Experience™ ($297/mo recurring)</li>
-        <li><strong>Redirect handling:</strong> a live "Culture Collective" campaign points a bit.ly link at a page on the current site — that destination must redirect to the 90-Day Experience page at launch so the campaign link doesn't 404</li>
-        <li><strong>Basic on-page QA:</strong> responsive testing, link checking, form/booking/payment test runs</li>
+        <li>Organic FB, IG, LinkedIn (Cita's personal profile)</li>
+        <li>Pillars, monthly calendar, batch-filming + repurposing pipeline</li>
+        <li>Link-click fix: CTAs, link-in-bio hub, UTM tagging</li>
+        <li>Monthly reporting via the Holiday Promo Tracker</li>
+        <li>Holiday promo posts — Summit tickets only (§6.5)</li>
+        <li>Ticket-page banner hygiene fix (Week 1)</li>
       </ul>
     </div>
     <div class="scope-card out">
-      <header><span class="dot"></span><span>DO NOT TOUCH YET</span></header>
+      <h3>Out of scope</h3>
       <ul>
-        <li>GHL <strong>workflows, automations, pipelines</strong> (including the CCCC sponsorship pipeline), tags, contacts, or email campaigns. The build must not create, edit, or delete any of these except the specific forms/calendar/payment connections listed in scope</li>
-        <li><strong>Domain/DNS</strong> — childcarecultureco.com is on GoDaddy and already connected to GHL. No DNS changes</li>
-        <li>The <strong>Stripe integration itself</strong> — already connected and working. Mark creates products/checkouts on top of it but does not alter the integration</li>
-        <li><strong>Summit 2027</strong> marketing assets, registration pages, or funnels — the Summit nav item links out to the existing page at <a href="https://childcarecultureco.com/bustamove" target="_blank" rel="noopener">childcarecultureco.com/bustamove</a></li>
-        <li><strong>Blog, SEO campaign work, or analytics setup</strong> — can be scoped as a later phase if wanted</li>
-        <li><strong>Copywriting from scratch</strong> — mockup copy is the source of truth; copy changes go through Anj</li>
+        <li>Paid ads — Bust A Move plan governs (§8: Anj realigns its Phase 3 timing)</li>
+        <li>Email nurture sequences (separate workstream)</li>
+        <li>Main-site changes (Anj's separate website build workstream)</li>
+        <li>TikTok / YouTube — revisit after 90 days</li>
       </ul>
     </div>
   </div>
 </section>
 
-<section id="stakeholders" class="reveal">
-  <span class="eyebrow">04 · Users &amp; Stakeholders</span>
-  <h2>Who does what</h2>
-  <hr class="divider">
+<section id="s4">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Content &amp; Channel Strategy</h2></div>
+  <h3>Channel roles</h3>
   <table>
-    <thead><tr><th>Person</th><th>Role</th><th>Responsibility</th></tr></thead>
-    <tbody>
-      <tr><td>Anj</td><td>Approver / point of contact</td><td>All sign-offs, all questions, phase approvals (on behalf of Cita)</td></tr>
-      <tr><td>Cita (Tacita Bateman)</td><td>Business owner</td><td>Final brand authority (via Anj)</td></tr>
-      <tr><td>Mark</td><td>Developer</td><td>Build, QA, phase estimates</td></tr>
-      <tr><td>Site visitors</td><td>Audience</td><td>Childcare center owners/directors — primary audience for all pages</td></tr>
-    </tbody>
+    <tr><th>Channel</th><th>Role</th><th>Why</th></tr>
+    <tr><td><strong>Facebook</strong></td><td>Primary reach + conversion engine</td><td>10k existing followers; the ECE audience lives here</td></tr>
+    <tr><td><strong>Instagram</strong></td><td>Cold-start rebuild</td><td>Reels reach non-followers; FB cross-promotes to IG; IG-native versions of proven FB posts</td></tr>
+    <tr><td><strong>LinkedIn</strong> (Cita personal)</td><td>Authority + director/owner reach</td><td>Personal profiles outperform company pages; job-title-rich buyers with team budgets — the team-pass audience</td></tr>
   </table>
-  <div class="callout red">
-    <span class="eyebrow">Single-threaded communication</span>
-    <p>All questions, blockers, and deliverables go through Anj. Mark does not contact Cita directly.</p>
+  <h3>Content pillars</h3>
+  <table>
+    <tr><th>#</th><th>Pillar</th><th>Purpose</th><th>Format lead</th></tr>
+    <tr><td>1</td><td><strong>Culture Authority</strong> — Cita teaching culture, leadership, retention</td><td>Trust + reach</td><td>Talking-head reels → LinkedIn video + text post</td></tr>
+    <tr><td>2</td><td><strong>Summit Hype</strong> — speaker drops, sessions, venue, countdown</td><td>Ticket driver</td><td>Reels (proven speaker-drop format), carousels</td></tr>
+    <tr><td>3</td><td><strong>Social Proof</strong> — testimonials, partner spotlights (Playground, CLAD, Childcare Studio, Preschool Posse)</td><td>Lowers barrier</td><td>Graphics, clips</td></tr>
+    <tr><td>4</td><td><strong>Behind the Scenes</strong> — Summit planning, Cita's world</td><td>Relatability</td><td>Stories, casual reels</td></tr>
+    <tr><td>5</td><td><strong>Offers</strong> — team passes first, singles second; holiday ticket promos; programs secondary</td><td>Conversion</td><td>Static + reel, one hard CTA</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--muted)">Mix: Jul–Aug ≈ 35/20/15/15/15 (pillars 1–5) → from September ≈ 25/30/15/10/20. Summit and Offers take over early because the sales deadline is Dec 31, not event week.</p>
+  <h3 style="margin-top:18px;margin-bottom:10px">Phases</h3>
+  <div class="acc open">
+    <button class="acc-head" aria-expanded="true"><span>Awareness + Infrastructure</span><span class="when">Jul – Aug 2026</span><span class="chev">›</span></button>
+    <div class="acc-body">Link fix + banner fix shipped, full cadence live, LinkedIn launched, authority content heavy. Goal: reach, follows, first link-click volume.</div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Consideration</span><span class="when">Sep – Oct 2026</span><span class="chev">›</span></button>
+    <div class="acc-body">Speaker drops, session content, partner proof, early-bird framing, first rungs of the holiday promo ladder. Goal: link clicks, email signups, first ticket sales.</div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Conversion Push</span><span class="when">Nov – Dec 2026</span><span class="chev">›</span></button>
+    <div class="acc-body">Deadline messaging to the EOY target. Black Friday / Cyber Monday and the December final call are the ladder's climax — the final and shallowest discounts. Goal: close the 100.</div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Fill Remaining Seats / Last Call</span><span class="when">Jan – Feb 2027</span><span class="chev">›</span></button>
+    <div class="acc-body">Lighter cadence acceptable; proof-heavy content that feeds paid retargeting.</div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Event + Recap</span><span class="when">Mar 2027</span><span class="chev">›</span></button>
+    <div class="acc-body">Live coverage, attendee moments, testimonial capture for the next cycle.</div>
   </div>
 </section>
 
-<section id="brand" class="reveal">
-  <span class="eyebrow">05 · Brand &amp; Design Constraints</span>
-  <h2>The brand system is locked</h2>
-  <hr class="divider">
-  <h3>Colors</h3>
-  <div class="swatch-row">
-    <div class="swatch"><div class="chip" style="background:#C20C0C"></div><div class="lbl"><b>Red</b><code>#C20C0C</code></div></div>
-    <div class="swatch"><div class="chip" style="background:#9F7833"></div><div class="lbl"><b>Gold</b><code>#9F7833</code></div></div>
-    <div class="swatch"><div class="chip" style="background:#111111"></div><div class="lbl"><b>Black</b><code>#111111</code></div></div>
-    <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--line)"></div><div class="lbl"><b>White</b><code>#FFFFFF</code></div></div>
+<section id="s5">
+  <div class="sec-head"><span class="sec-num">05</span><h2>Cadence, Production &amp; Approval</h2></div>
+  <table>
+    <tr><th>Channel</th><th>Cadence</th></tr>
+    <tr><td>Instagram</td><td>4 posts/wk (2 reels, 1 carousel, 1 static) + Stories 3–5×/wk</td></tr>
+    <tr><td>Facebook</td><td>Mirrors IG with FB-native captions</td></tr>
+    <tr><td>LinkedIn (Cita personal)</td><td>3 posts/wk (1 video, 2 text/carousel)</td></tr>
+  </table>
+  <h3>Production pipeline</h3>
+  <ol class="steps">
+    <li><strong>Batch filming:</strong> Cita films 4–6 talking-head videos per session, 2 sessions/month (~60–90 min each).</li>
+    <li><strong>Repurposing:</strong> each video → IG/FB reel + LinkedIn video + LinkedIn text post + quote graphic ≈ two weeks of Pillar 1 supply.</li>
+    <li><strong>Anj owns:</strong> editing, captions, graphics, scheduling, community management, reporting.</li>
+    <li><strong>Cita owns:</strong> on-camera delivery + monthly calendar approval.</li>
+  </ol>
+  <div class="callout gold"><span class="lab g">Approval workflow — confirmed</span>Anj drafts next month's calendar by the <strong>25th</strong> → Cita approves → Anj publishes everything on the approved calendar without per-post sign-off. Mid-month reactive posts in Cita's voice get quick async approval; graphics and Pillar 3/5 posts inside approved campaigns publish directly. Scheduling runs on <strong>GHL Social Planner</strong> in the CCCC sub-account — no new tooling spend.</div>
+  <h3>Locked brand system (all creative)</h3>
+  <div class="brand-strip">
+    <div class="swatch"><div class="chip" style="background:#C20C0C"></div><div class="lab"><b>Red</b>#C20C0C</div></div>
+    <div class="swatch"><div class="chip" style="background:#9F7833"></div><div class="lab"><b>Gold</b>#9F7833</div></div>
+    <div class="swatch"><div class="chip" style="background:#111111"></div><div class="lab"><b>Black</b>#111111</div></div>
+    <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--line)"></div><div class="lab"><b>White</b>#FFFFFF</div></div>
   </div>
-  <h3>Typography</h3>
-  <div class="type-row">
-    <div class="type-card"><div class="sample" style="font-family:'Manrope',sans-serif;font-weight:800">Manrope</div><div class="lbl"><b>Display</b> — headlines and display text</div></div>
-    <div class="type-card"><div class="sample" style="font-family:'Inter',sans-serif;font-weight:500">Inter</div><div class="lbl"><b>Body</b> — body copy and subheadlines</div></div>
+  <div class="type-spec">
+    <div class="man">Manrope — headlines &amp; display</div>
+    <div class="int" style="font-family:'Inter'">Inter — body copy and subheadlines. No other typefaces in the system.</div>
   </div>
-  <ul>
-    <li>If exact fonts can't be loaded in the GHL builder, <strong>substitutions require Anj's approval before use</strong>.</li>
-    <li><strong>"Culture Before Everything™"</strong> — trademark symbol included wherever the phrase appears (aspirational styling, applied consistently).</li>
-    <li>Refinements Mark makes must stay inside this system. Anything outside it — new colors, new fonts, tone changes — needs written approval first.</li>
+</section>
+
+<section id="s6">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Conversion Infrastructure (Week 1 — prerequisite)</h2></div>
+  <ol class="steps">
+    <li><strong>Ticket-page banner hygiene:</strong> remove the expired Juneteenth banner; remove or properly schedule the flash-sale banner so it displays only during its live window.</li>
+    <li><strong>UTM-tagged links on every post with a destination</strong> (utm_source, utm_medium=organic, utm_campaign per the tracker convention). No naked links, no linkless CTAs.</li>
+    <li><strong>Link-in-bio hub (GHL):</strong> Summit tickets first (team tiers featured), email opt-in second, programs third.</li>
+    <li><strong>CTA discipline:</strong> one CTA per post. Pillar 1 → follow/save; Pillars 2 &amp; 5 → the link.</li>
+    <li><strong>Stories link stickers</strong> on every Summit story.</li>
+    <li>Weekly link-click + UTM review for the first month before the paid track scales spend against the same destinations.</li>
+  </ol>
+  <hr>
+  <h3>6.5 — Holiday Promo Ladder (Summit tickets only · confirmed)</h3>
+  <p>Holiday discounts apply <strong>only to Summit tickets</strong>, within CCCC's historical <strong>10–40% band</strong>, structured as a descending ladder so waiting always costs more. The "best price left" claim in creative stays literally true.</p>
+  <div class="ladder">
+    <div class="rung"><span class="depth">Deepest — near 40%</span><div class="note">Earliest rungs (e.g., late-summer / early-fall holidays)</div></div>
+    <div class="rung"><span class="depth">Mid-band — 20–30%</span><div class="note">Mid-fall holidays as consideration-phase accelerants</div></div>
+    <div class="rung"><span class="depth">Shallowing — 15–20%</span><div class="note">Black Friday / Cyber Monday — the climax window</div></div>
+    <div class="rung"><span class="depth">Final call — 10–15%</span><div class="note">December close, timed to the 100-attendee checkpoint</div></div>
+  </div>
+  <ul class="clean">
+    <li>Each promo: hard start/end, unique promo code, logged in the Holiday Promo Tracker.</li>
+    <li>Team passes are the hero SKU in every promo creative; singles are the fallback.</li>
+    <li><strong>Process:</strong> Anj proposes each promo inside the monthly calendar; Cita sets final prices. Depths above are illustrative until priced.</li>
+    <li>Ladder pricing stays synchronized with the paid track — one ladder, everywhere.</li>
   </ul>
 </section>
 
-<section id="technical" class="reveal">
-  <span class="eyebrow">06 · Technical Constraints</span>
-  <h2>How it must be built</h2>
-  <hr class="divider">
-  <ul>
-    <li><strong>Platform:</strong> GHL website builder only. No external hosting, no custom-coded standalone site.</li>
-    <li><strong>Custom code blocks</strong> (HTML/CSS embeds) inside the GHL builder are allowed where the native builder can't achieve the design, but should be the exception, not the default — they're harder to maintain after handoff.</li>
-    <li><strong>Image assets</strong> are already uploaded to GHL Media Storage. Mark works from those and flags any missing assets to Anj rather than sourcing his own.</li>
-    <li><strong>Payments:</strong> two separate products built on the existing Stripe connection.</li>
-  </ul>
-  <div class="callout red">
-    <span class="eyebrow">Hard rule</span>
-    <p><strong>Nothing goes live without sign-off.</strong> All pages are built unpublished/staged. The current live site stays untouched until Anj approves launch, at which point the new pages replace it on the same domain.</p>
-  </div>
-</section>
-
-<section id="phases" class="reveal">
-  <span class="eyebrow">07 · Engagement Model &amp; Phases</span>
-  <h2>Six phases, six gates</h2>
-  <hr class="divider">
-  <p><strong>Rate:</strong> $6/hr, hourly. <strong>Deadline:</strong> none fixed — controlled instead by per-phase estimates.</p>
-  <div class="callout">
-    <span class="eyebrow">Budget-control rule</span>
-    <p>Before starting each phase, Mark submits an hour estimate for that phase. Anj approves the estimate. <strong>If actuals will exceed the estimate by more than 20%, Mark stops and flags it before continuing.</strong> This is the budget-control mechanism in place of a fixed cap.</p>
-  </div>
-  <p style="font-size:.85rem;color:var(--ink-faint)">Click a phase to expand its deliverable and sign-off gate.</p>
-
-  <div class="phases">
-    <div class="phase">
-      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 0</span><span class="phase-title">Walkthrough &amp; estimate</span><span class="phase-chev">▸</span></button>
-      <div class="phase-body">
-        <div class="row"><span class="k">Deliverable</span><span class="v">Mark reviews the mockup and GHL sub-account, submits per-phase hour estimates, and flags any feasibility issues.</span></div>
-        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">ANJ APPROVES ESTIMATES</span></span></div>
-      </div>
-    </div>
-    <div class="phase">
-      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 1</span><span class="phase-title">Global elements</span><span class="phase-chev">▸</span></button>
-      <div class="phase-body">
-        <div class="row"><span class="k">Deliverable</span><span class="v">Header, footer, navigation, and brand styles/theme set up in the builder.</span></div>
-        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">ANJ REVIEWS</span></span></div>
-      </div>
-    </div>
-    <div class="phase">
-      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 2</span><span class="phase-title">Page builds</span><span class="phase-chev">▸</span></button>
-      <div class="phase-body">
-        <div class="row"><span class="k">Deliverable</span><span class="v">All six pages built (unpublished), desktop and mobile.</span></div>
-        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">ANJ REVIEWS EACH PAGE</span></span></div>
-      </div>
-    </div>
-    <div class="phase">
-      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 3</span><span class="phase-title">Functionality wiring</span><span class="phase-chev">▸</span></button>
-      <div class="phase-body">
-        <div class="row"><span class="k">Deliverable</span><span class="v">Forms → GHL, booking widget → 15-Min Strategy Call calendar, both payment checkouts.</span></div>
-        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">BUILT &amp; READY FOR TESTING</span></span></div>
-      </div>
-    </div>
-    <div class="phase">
-      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 4</span><span class="phase-title">QA &amp; test runs</span><span class="phase-chev">▸</span></button>
-      <div class="phase-body">
-        <div class="row"><span class="k">Deliverable</span><span class="v">Test-mode form submissions, test bookings, test transactions on both checkouts; cross-device check, link check, redirect check, final punch list.</span></div>
-        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">ANJ VERIFIES ALL TESTS PASS</span></span></div>
-      </div>
-    </div>
-    <div class="phase">
-      <button class="phase-head" aria-expanded="false"><span class="phase-num">PHASE 5</span><span class="phase-title">Launch</span><span class="phase-chev">▸</span></button>
-      <div class="phase-body">
-        <div class="row"><span class="k">Deliverable</span><span class="v">Pages published to childcarecultureco.com, replacing the current site; Culture Collective campaign redirect live; post-launch smoke test.</span></div>
-        <div class="row"><span class="k">Gate</span><span class="v"><span class="gate-tag">ANJ FINAL SIGN-OFF</span></span></div>
-      </div>
-    </div>
-  </div>
-
-  <h3>Revisions &amp; change requests</h3>
-  <p>Revisions within an approved phase's scope are included in that phase's hours. New requests after a phase is signed off are logged as change requests with their own estimate.</p>
-  <h3>Post-launch support</h3>
-  <p>Mark may be retained at the same hourly rate for post-launch fixes if needed, but continued engagement after launch is <strong>not guaranteed</strong> and carries no committed support window.</p>
-</section>
-
-<section id="acceptance" class="reveal">
-  <span class="eyebrow">08 · Acceptance Checklist</span>
-  <h2>Final launch gate</h2>
-  <hr class="divider">
-  <p>Every item below must be checked before Phase 5 launch is approved. Tap items to track progress during the final review (progress resets on page reload).</p>
-  <div class="progress-bar-wrap">
-    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-    <span class="progress-label" id="progressLabel">0 / 11 complete</span>
-  </div>
-  <ul class="checklist" id="checklist">
-    <li><button class="check-item"><span class="box">✓</span><span>All six pages match approved designs on desktop and mobile</span></button></li>
-    <li><button class="check-item"><span class="box">✓</span><span>All forms tested — submissions arrive in GHL with correct attribution</span></button></li>
-    <li><button class="check-item"><span class="box">✓</span><span>Speaker inquiry form tested separately from contact form</span></button></li>
-    <li><button class="check-item"><span class="box">✓</span><span>Booking widget tested — test booking appears on the 15-Min Strategy Call calendar</span></button></li>
-    <li><button class="check-item"><span class="box">✓</span><span>Culture Club ($99/mo) checkout tested end-to-end</span></button></li>
-    <li><button class="check-item"><span class="box">✓</span><span>90-Day Culture Transformation Experience™ ($297/mo) checkout tested end-to-end</span></button></li>
-    <li><button class="check-item"><span class="box">✓</span><span>Culture Collective campaign redirect resolves to the 90-Day Experience page</span></button></li>
-    <li><button class="check-item"><span class="box">✓</span><span>No broken links; no console errors on any page</span></button></li>
-    <li><button class="check-item"><span class="box">✓</span><span>"Culture Before Everything™" renders with ™ everywhere it appears</span></button></li>
-    <li><button class="check-item"><span class="box">✓</span><span>No workflows, pipelines, or tags modified outside the agreed connections</span></button></li>
-    <li><button class="check-item"><span class="box">✓</span><span>Anj final sign-off recorded</span></button></li>
+<section id="s7">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Measurement &amp; Reporting</h2></div>
+  <ul class="clean">
+    <li>Extends the existing <strong>Holiday Promo Social Media Tracker</strong> — platform, post type, CTA, reach, engagement, link clicks, CTR.</li>
+    <li><strong>Week 1:</strong> pull July FB/IG reach and engagement baselines from Insights so the +50% target has a measured denominator.</li>
+    <li><strong>Monthly report to Cita</strong>, delivered with the calendar: reach, follower growth, link clicks, signups, UTM-attributed attendees vs. the 30 target, top/bottom 3 posts, adjustments.</li>
+    <li><strong>Kill/scale rule:</strong> any format below account median for 4 consecutive weeks is cut; anything at 2× median gets doubled.</li>
   </ul>
 </section>
 
-<footer>PRD v3 · Final for handoff · Childcare Culture &amp; Co. · Prepared by Angielu Palana · July 3, 2026</footer>
+<section id="s8">
+  <div class="sec-head"><span class="sec-num">08</span><h2>Coordination with the Paid Track</h2></div>
+  <ul class="clean">
+    <li><strong>Anj owns realigning the Bust A Move ad plan's conversion phase</strong> to the Dec 31 target (currently Dec–Feb — misaligned). Scheduled Week 1.</li>
+    <li>Organic top performers become paid creative candidates — boost what's proven.</li>
+    <li>Promo codes and ladder pricing synchronized across organic and paid.</li>
+    <li>Paid retargeting audiences built from organic video viewers and profile engagers — organic feeds the paid funnel.</li>
+  </ul>
+</section>
 
+<section id="s9">
+  <div class="sec-head"><span class="sec-num">09</span><h2>Timeline</h2></div>
+  <table>
+    <tr><th>When</th><th>Milestone</th></tr>
+    <tr><td>Wk of Jul 7</td><td>PRD sign-off · ticket-page banners fixed · link-in-bio hub + UTM convention live · LinkedIn optimized · July baselines pulled · paid plan Phase 3 realigned (Anj)</td></tr>
+    <tr><td>Wk of Jul 14</td><td>First batch filming · August calendar (incl. first promo ladder proposal) → Cita approval</td></tr>
+    <tr><td>Aug 1</td><td>Full cadence live on all three channels</td></tr>
+    <tr><td>Sep 1</td><td>First monthly report · Consideration phase · first ladder promo</td></tr>
+    <tr><td>Nov 1</td><td>Conversion push · Black Friday prep</td></tr>
+    <tr><td><strong>Dec 31</strong></td><td><strong>100-attendee checkpoint</strong></td></tr>
+    <tr><td>Jan–Feb 2027</td><td>Fill remaining seats / last call</td></tr>
+    <tr><td>Mar 2027</td><td>Summit + recap content</td></tr>
+  </table>
+</section>
+
+<section id="s10">
+  <div class="sec-head"><span class="sec-num">10</span><h2>Acceptance Checklist</h2></div>
+  <div class="progress-wrap">
+    <div class="progress-lab"><span>Launch readiness</span><span id="prog-txt">0 / 10</span></div>
+    <div class="bar"><div class="bar-fill" id="prog-fill"></div></div>
+  </div>
+  <div id="checks">
+    <div class="check" tabindex="0"><div class="box">✓</div><div class="txt"><b>PRD approved by Cita</b> — this document, v3</div></div>
+    <div class="check" tabindex="0"><div class="box">✓</div><div class="txt"><b>Expired Juneteenth banner removed</b> from /bustamovetickets; flash-sale banner scheduled or removed</div></div>
+    <div class="check" tabindex="0"><div class="box">✓</div><div class="txt"><b>UTM convention documented</b> and applied to all destination links</div></div>
+    <div class="check" tabindex="0"><div class="box">✓</div><div class="txt"><b>Link-in-bio hub live</b> in GHL — tickets first, team tiers featured</div></div>
+    <div class="check" tabindex="0"><div class="box">✓</div><div class="txt"><b>Cita's LinkedIn profile optimized</b> for the authority positioning</div></div>
+    <div class="check" tabindex="0"><div class="box">✓</div><div class="txt"><b>July FB/IG baselines pulled</b> from Insights and logged</div></div>
+    <div class="check" tabindex="0"><div class="box">✓</div><div class="txt"><b>Paid plan Phase 3 realigned</b> to the Dec 31 target (Anj)</div></div>
+    <div class="check" tabindex="0"><div class="box">✓</div><div class="txt"><b>First batch filming session completed</b> — 4–6 videos in the bank</div></div>
+    <div class="check" tabindex="0"><div class="box">✓</div><div class="txt"><b>August calendar approved</b> by Cita, incl. first promo ladder proposal</div></div>
+    <div class="check" tabindex="0"><div class="box">✓</div><div class="txt"><b>Full cadence live Aug 1</b> across FB, IG, LinkedIn via GHL Social Planner</div></div>
+  </div>
+  <p class="checklist-note">Checklist state is session-only (resets on reload) — it's a review aid, not a tracker. Ongoing tracking lives in the Holiday Promo Tracker.</p>
+</section>
+
+<section id="sA">
+  <div class="sec-head"><span class="sec-num">A</span><h2>August 2026 Content Calendar</h2></div>
+  <div class="callout gold"><span class="lab g">Draft — pending Cita approval (§5)</span>Filming and editing can begin immediately from the briefs below. Publishing waits for calendar approval. Cadence per §5: IG/FB Mon·Tue·Thu·Fri · LinkedIn Mon·Wed·Fri · Stories 3–5×/wk (not individually calendared).</div>
+
+  <h3>A.1 — Batch filming briefs (film these first)</h3>
+  <p style="font-size:13.5px;color:var(--muted)">Session A: wk of Jul 14 → feeds Aug 1–16. Session B: wk of Aug 10 → feeds Aug 17–31. Each video repurposes into an IG/FB reel + LinkedIn video + LinkedIn text post + quote graphic.</p>
+  <table>
+    <tr><th>#</th><th>Working title</th><th>Pillar</th><th>Angle</th></tr>
+    <tr><td>A1</td><td>"Culture eats compensation for breakfast"</td><td>1</td><td>Why staff leave even after raises — retention is a culture problem</td></tr>
+    <tr><td>A2</td><td>"The 5-minute Monday ritual that changes staff culture"</td><td>1</td><td>One practical, immediately usable habit</td></tr>
+    <tr><td>A3</td><td>"Stop hiring warm bodies"</td><td>1</td><td>Hiring for culture fit vs. filling shifts</td></tr>
+    <tr><td>A4</td><td>"Director burnout is a culture symptom, not a personal failure"</td><td>1</td><td>Reframe burnout; empathy + authority</td></tr>
+    <tr><td>A5</td><td>"Why Bust A Move 2027 exists"</td><td>2</td><td>Cita's why — the origin story of the Summit</td></tr>
+    <tr><td>A6</td><td>"Bring your team or don't bother"</td><td>5</td><td>Team-pass pitch: culture doesn't change when one director attends alone</td></tr>
+    <tr><td>B1</td><td>"Parents can feel your culture at the front door"</td><td>1</td><td>Culture as the enrollment edge parents notice</td></tr>
+    <tr><td>B2</td><td>"The exit interview question every director skips"</td><td>1</td><td>Tactical; invites comments</td></tr>
+    <tr><td>B3</td><td>"Your handbook is not your culture"</td><td>1</td><td>Policy vs. lived behavior</td></tr>
+    <tr><td>B4</td><td>"What happens in Hot Springs"</td><td>2</td><td>Venue/experience teaser</td></tr>
+    <tr><td>B5</td><td>"How to give feedback teachers actually hear"</td><td>1</td><td>Practical leadership skill</td></tr>
+    <tr><td>B6</td><td>"Back to school, back to culture"</td><td>5</td><td>Back-to-School promo launch video (code TBD by Cita)</td></tr>
+  </table>
+
+  <div class="callout"><span class="lab r">A.2 — Proposed promo · first rung of the ladder</span><strong>Back-to-School Sale · Mon Aug 17 – Sun Aug 23 · proposed depth ~40% (deepest rung) · Summit tickets only · team passes hero.</strong> August has no federal holiday; this seasonal moment matches when directors staff and plan for fall. Cita sets final price and promo code.</div>
+
+  <h3>A.3 — Week-by-week</h3>
+  <table>
+    <tr><th>Date</th><th>Channel</th><th>Format</th><th>P</th><th>Content</th><th>CTA</th></tr>
+    <tr><td>Sat 1</td><td>IG+FB</td><td>Static</td><td>2</td><td>"7 months to Bust A Move" — countdown kickoff</td><td>Tickets</td></tr>
+  </table>
+  <table>
+    <tr><th colspan="6" style="border-bottom:1px solid var(--line);color:var(--black)">Week 1 · Aug 3–7</th></tr>
+    <tr><th>Date</th><th>Channel</th><th>Format</th><th>P</th><th>Content</th><th>CTA</th></tr>
+    <tr><td>Mon 3</td><td>IG+FB / LI</td><td>Reel / Video</td><td>1</td><td>A1 — Culture eats compensation</td><td>Follow/save</td></tr>
+    <tr><td>Tue 4</td><td>IG+FB</td><td>Carousel</td><td>1</td><td>"5 signs your center has a culture problem"</td><td>Follow/save</td></tr>
+    <tr><td>Wed 5</td><td>LI</td><td>Text</td><td>1</td><td>A1-derived: the raise that didn't fix retention</td><td>Comment</td></tr>
+    <tr><td>Thu 6</td><td>IG+FB</td><td>Reel</td><td>2</td><td>A5 — Why Bust A Move exists</td><td>Tickets</td></tr>
+    <tr><td>Fri 7</td><td>IG+FB / LI</td><td>Static / Carousel</td><td>3 / 1</td><td>Partner spotlight: Playground / "The real cost of one teacher quitting"</td><td>Tickets / Follow</td></tr>
+  </table>
+  <table>
+    <tr><th colspan="6" style="border-bottom:1px solid var(--line);color:var(--black)">Week 2 · Aug 10–14 — Session B films this week</th></tr>
+    <tr><th>Date</th><th>Channel</th><th>Format</th><th>P</th><th>Content</th><th>CTA</th></tr>
+    <tr><td>Mon 10</td><td>IG+FB / LI</td><td>Reel / Video</td><td>1</td><td>A2 — 5-minute Monday ritual</td><td>Follow/save</td></tr>
+    <tr><td>Tue 11</td><td>IG+FB</td><td>Carousel</td><td>2</td><td>"Inside the Culture Shock Summit" — session themes preview</td><td>Tickets</td></tr>
+    <tr><td>Wed 12</td><td>LI</td><td>Text</td><td>1</td><td>A4-derived: burnout is a culture symptom</td><td>Comment</td></tr>
+    <tr><td>Thu 13</td><td>IG+FB</td><td>Reel</td><td>5</td><td>A6 — team-pass pitch</td><td>Team tiers</td></tr>
+    <tr><td>Fri 14</td><td>IG+FB / LI</td><td>Static / Carousel</td><td>4 / 5</td><td>BTS: Summit planning / Team-pass ROI math for owners</td><td>Follow / Team tiers</td></tr>
+  </table>
+  <table>
+    <tr><th colspan="6" style="border-bottom:1px solid var(--line);color:var(--red)">Week 3 · Aug 17–21 — Back-to-School promo window</th></tr>
+    <tr><th>Date</th><th>Channel</th><th>Format</th><th>P</th><th>Content</th><th>CTA</th></tr>
+    <tr><td>Mon 17</td><td>IG+FB / LI</td><td>Reel / Video</td><td>5</td><td>B6 — promo launch, code + deadline</td><td>Promo link</td></tr>
+    <tr><td>Tue 18</td><td>IG+FB</td><td>Carousel</td><td>1</td><td>"Back to school, back to culture — 5 fall resets" (promo CTA)</td><td>Promo link</td></tr>
+    <tr><td>Wed 19</td><td>LI</td><td>Text</td><td>5</td><td>Directors: bring your team this fall</td><td>Promo link</td></tr>
+    <tr><td>Thu 20</td><td>IG+FB</td><td>Reel</td><td>1</td><td>A3 — Stop hiring warm bodies</td><td>Follow/save</td></tr>
+    <tr><td>Fri 21</td><td>IG+FB / LI</td><td>Static / Carousel</td><td>3 / 1</td><td>Partner spotlight: CLAD / A3-derived hiring carousel</td><td>Promo / Follow</td></tr>
+    <tr><td>Sun 23</td><td>Stories</td><td>Sticker</td><td>5</td><td>Promo final-hours countdown (all channels)</td><td>Promo link</td></tr>
+  </table>
+  <table>
+    <tr><th colspan="6" style="border-bottom:1px solid var(--line);color:var(--black)">Week 4 · Aug 24–28 &nbsp;+&nbsp; Mon Aug 31</th></tr>
+    <tr><th>Date</th><th>Channel</th><th>Format</th><th>P</th><th>Content</th><th>CTA</th></tr>
+    <tr><td>Mon 24</td><td>IG+FB / LI</td><td>Reel / Video</td><td>1</td><td>B1 — Parents feel your culture at the front door</td><td>Follow/save</td></tr>
+    <tr><td>Tue 25</td><td>IG+FB</td><td>Carousel</td><td>2</td><td><strong>Speaker Drop #1 — Dr. Mia Young, Keynote Speaker</strong></td><td>Tickets</td></tr>
+    <tr><td>Wed 26</td><td>LI</td><td>Text</td><td>1</td><td>B3-derived: your handbook is not your culture</td><td>Comment</td></tr>
+    <tr><td>Thu 27</td><td>IG+FB</td><td>Reel</td><td>2</td><td>B4 — What happens in Hot Springs</td><td>Tickets</td></tr>
+    <tr><td>Fri 28</td><td>IG+FB / LI</td><td>Static / Carousel</td><td>3 / 2</td><td>Testimonial graphic / Summit agenda sneak</td><td>Tickets / Tickets</td></tr>
+    <tr><td>Mon 31</td><td>IG+FB / LI</td><td>Reel / Video</td><td>1</td><td>B2 — The exit-interview question every director skips</td><td>Comment</td></tr>
+  </table>
+  <h3>A.4 — Speaker drop schedule</h3>
+  <p>Confirmed lineup: <strong>Dr. Mia Young (keynote)</strong> · Raeyna Woodside-Howard · Melissa Blotter · Erica Saccoccio · Reshaun Webb · Elisha Jones · <strong>Tacita Bateman (host)</strong>.</p>
+  <p style="font-size:13.5px;color:var(--muted)">Aug 25 leads with the keynote to anchor credibility. The remaining five speakers drop one per week through Sep–Oct (September/October calendars) using the proven speaker-drop reel format — filling the Consideration-phase Pillar 2 slots. Tacita is positioned as host across all Summit content, not announced as a drop.</p>
+  <p style="font-size:13.5px;color:var(--muted)"><strong>Pillar mix check:</strong> ~35% P1 · ~22% P2 · ~13% P3 · ~9% P4 · ~21% P5 — on target for the Jul–Aug mix; P5 slightly heavy from promo week (intentional). <strong>Open before publishing:</strong> Cita approves the calendar · Cita prices the promo + code.</p>
+
+  <h3 style="margin-top:26px">A.5 — Content drafts, captions &amp; hashtags</h3>
+  <div class="callout"><span class="lab r">Placeholders by design</span><strong>[XX%] / [CODE]</strong> await Cita's promo pricing · <strong>Dr. Mia Young credential line</strong> needed from Cita before the Aug 25 design · <strong>Aug 28 testimonial</strong> must be a real, attributed quote from the community.</div>
+  <h3 style="margin-top:20px;font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold)">Kickoff + Week 1 · Aug 1–7</h3>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Sat Aug 1 · Static · P2 — '7 Months to Bust A Move' — countdown kickoff</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">GRAPHIC</span>7 MONTHS. / HOT SPRINGS, ARKANSAS. / BUST A MOVE 2027 — THE CHILDCARE CULTURE SHOCK SUMMIT. (Red/gold on black, Manrope display.)</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>The Childcare Culture Shock Summit is officially 7 months away. March 2027, Hot Springs, Arkansas — three days of childcare leadership, culture transformation, and the boldest room in early childhood education. Directors, owners, and teams: this is your sign to plan ahead. 🎟️ Tickets are live — link in bio.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#BustAMove2027 #ChildcareCultureShockSummit #ChildcareDirector #EarlyChildhoodEducation #CultureBeforeEverything #ECEConference</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Mon Aug 3 · Reel / Video · P1 — A1 — Culture eats compensation for breakfast</span><span class="when">IG+FB / LI</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SCRIPT (Cita — beats, not lines)</span>HOOK: 'You gave her a raise. She still quit. Here's why.' → Raises fix pay, not culture. → People don't leave paychecks; they leave how a building feels. → Before you touch the pay scale, audit what Monday morning feels like in your center. CTA: 'Follow for childcare culture leadership.'</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>Staff retention in childcare isn't a salary problem — it's a culture problem. A raise can't fix a room your teachers dread walking into. Before you rewrite the pay scale, audit how your center feels on a Monday morning. That's where retention lives. Follow for childcare leadership and culture strategy. ✨</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — LINKEDIN</span>We keep treating childcare staff turnover as a compensation problem. Here's the pattern: teachers get raises and still resign within months when the culture is broken. Compensation gets people in the door — culture decides whether they stay. If you're a director or owner losing good teachers, the first audit isn't your pay scale. It's what Monday morning feels like in your building. Directors: has a raise alone ever fixed retention for you?</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#TeacherRetention #ChildcareLeadership #DaycareOwner #ChildcareDirector #ECELeadership #CultureBeforeEverything</span></p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#EarlyChildhoodEducation #ChildcareLeadership #EmployeeRetention #WorkplaceCulture #Leadership #ECE</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Tue Aug 4 · Carousel · P1 — '5 signs your center has a culture problem'</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SLIDES</span>1) TITLE: 5 signs your childcare center has a culture problem. 2) Your best teacher went quiet. 3) Call-outs spike on Mondays. 4) Parents feel the tension at drop-off. 5) New hires ghost by week 3. 6) Every decision routes through you. 7) CTA: Culture is fixable — follow @childcarecultureco.</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>5 signs your childcare center has a culture problem (and a director carrying it all). Staff turnover, Monday call-outs, tense drop-offs — these aren't staffing issues, they're culture signals. Save this checklist and audit your center this week. Which one hit hardest? 👇</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#ChildcareCulture #ChildcareDirector #DaycareOwner #StaffRetention #ECELeadership #EarlyChildhoodEducation</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Wed Aug 5 · Text post · P1 — The raise that didn't fix retention (A1-derived)</span><span class="when">LinkedIn</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">POST COPY</span>Here's a pattern that repeats across childcare centers everywhere: a director fights for a raise for her lead teacher. Leadership approves it. Three months later, that teacher resigns anyway. Not because the money didn't matter — because the raise never touched the reason she was leaving. The chaotic mornings. The feedback that only arrived as criticism. The feeling of being staffed, not led. Compensation is the entry ticket. Culture is the retention strategy. Directors and owners: when you lose someone good, look past the exit paperwork and ask what the last 90 days felt like on the floor. What's the retention lever that actually worked in your center?</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#ChildcareLeadership #EmployeeRetention #WorkplaceCulture #EarlyChildhoodEducation #Leadership #ECE</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Thu Aug 6 · Reel · P2 — A5 — Why Bust A Move 2027 exists</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SCRIPT</span>HOOK: 'I didn't create a childcare conference. I created a culture intervention.' → The industry has a burnout and turnover crisis, and most conferences teach compliance, not culture. → Bust A Move is three days that change how your building feels — not a binder that collects dust. CTA: 'Tickets are in the bio. Bring your team.'</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>Why does Bust A Move 2027 exist? Because childcare doesn't need another conference — it needs a culture shock. The Childcare Culture Shock Summit, March 2027 in Hot Springs, is where directors, owners, and teams reset how their centers feel, lead, and retain. 🎟️ Tickets in bio — bring your team.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#BustAMove2027 #ChildcareCultureShockSummit #ECEConference #ChildcareDirector #CultureBeforeEverything #EarlyChildhoodEducation</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Fri Aug 7 · Static · P3 — Partner spotlight — Playground</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">GRAPHIC</span>COMMUNITY PARTNER: PLAYGROUND (logo lockup on brand frame).</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>Community partner spotlight: Playground 🤝 Bust A Move 2027 is powered by partners who believe culture comes before everything in childcare. Playground's childcare management software supports the centers doing this work every single day. See you in Hot Springs, March 2027. 🎟️ Tickets in bio.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#BustAMove2027 #ChildcarePartners #ChildcareManagement #ECECommunity #ChildcareCultureShockSummit #EarlyChildhoodEducation</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Fri Aug 7 · Carousel · P1 — 'What one teacher quitting actually costs your center'</span><span class="when">LinkedIn</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SLIDES</span>1) TITLE: What one teacher quitting actually costs your center. 2) Recruiting: job ads, screening hours, interviews. 3) Coverage: substitutes + overtime while the room is short. 4) Enrollment risk: parents notice a revolving door. 5) The morale tax on the teachers who stay. 6) Industry estimates put a single exit in the thousands. 7) Culture is the cheapest retention strategy you have.</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — LINKEDIN</span>The real cost of childcare turnover isn't the job posting. It's substitute coverage, overtime, onboarding hours, enrollment risk when parents notice the revolving door — and the morale tax on the teachers who stay. Industry estimates put a single exit in the thousands of dollars. Culture is the cheapest retention strategy you have. Owners: are you measuring the cost of churn, or just absorbing it?</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#ChildcareBusiness #EmployeeRetention #EarlyChildhoodEducation #Leadership #WorkplaceCulture #ECE</span></p>
+    </div>
+  </div>
+  <h3 style="margin-top:20px;font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold)">Week 2 · Aug 10–14</h3>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Mon Aug 10 · Reel / Video · P1 — A2 — The 5-minute Monday ritual</span><span class="when">IG+FB / LI</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SCRIPT</span>HOOK: 'This 5-minute Monday ritual will change your staff culture.' → A standing huddle before doors open — 5 minutes, no chairs, no agenda creep. → Three things only: one win, one heads-up, one thank-you. → Consistency beats grand gestures; do it every Monday for a month. CTA: 'Try it this Monday and come back and tell me what shifted.'</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>Childcare staff culture isn't built at retreats — it's built in 5-minute Monday rituals. Try this huddle before doors open: one win, one heads-up, one thank-you. Run it every Monday for a month and watch your team's energy shift. Save this and tag your co-director. 💪</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — LINKEDIN</span>Culture change in childcare rarely comes from the big initiative. It comes from small, repeated rituals. One that works: a 5-minute standing huddle every Monday before doors open — one win, one heads-up, one thank-you. No chairs, no slides, no exceptions. Four Mondays in, teams communicate differently. Leaders: what's the smallest ritual that made the biggest difference for your team?</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#ChildcareLeadership #TeamCulture #ChildcareDirector #ECELeadership #StaffMorale #EarlyChildhoodEducation</span></p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#Leadership #WorkplaceCulture #EarlyChildhoodEducation #TeamBuilding #ChildcareLeadership #ECE</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Tue Aug 11 · Carousel · P2 — 'Inside the Culture Shock Summit' — session themes</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SLIDES</span>1) TITLE: What actually happens at the Childcare Culture Shock Summit. 2) Culture transformation workshops — work ON your center, not just in it. 3) Leadership + retention strategy you can run Monday. 4) Real talk with directors who've rebuilt from the inside out. 5) Keynote reveal coming this month 👀. 6) Hot Springs, AR · March 2027. 7) CTA: Tickets in bio — team passes available.</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>What actually happens at the Childcare Culture Shock Summit? Culture transformation workshops, childcare leadership and retention strategy, and real conversations with directors who've rebuilt their centers from the inside out. March 2027, Hot Springs. Keynote announcement drops this month 👀 🎟️ Tickets in bio.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#ChildcareCultureShockSummit #BustAMove2027 #ECEConference #ChildcareDirector #CultureBeforeEverything #ChildcareLeadership</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Wed Aug 12 · Text post · P1 — Director burnout is a culture symptom (A4-derived)</span><span class="when">LinkedIn</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">POST COPY</span>Director burnout is a culture symptom, not a personal failure. When every schedule change, parent complaint, and staffing gap routes through one person, exhaustion isn't a discipline problem — it's a system design problem. The fix isn't 'self-care Sunday.' It's building a culture where the team owns outcomes, decisions get pushed down, and the director leads the building instead of carrying it. If you're a director running on fumes: the goal isn't to work harder inside a broken system. It's to change the system. What's one thing you stopped personally owning that your center survived just fine without?</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#DirectorBurnout #ChildcareLeadership #WorkplaceCulture #EarlyChildhoodEducation #Leadership #ECE</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Thu Aug 13 · Reel · P5 — A6 — Team-pass pitch: 'Bring your team or don't bother'</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SCRIPT</span>HOOK: 'Don't come to Bust A Move alone. Seriously.' → One inspired director returns to an unchanged team, and the momentum dies in two weeks. → Culture shifts when the whole team hears it together and leaves with the same plan. → Team passes: 3, 5, or 10 seats, as low as $249 a seat. CTA: 'Team passes are in the bio.'</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>Here's the truth about childcare conferences: one inspired director can't out-lead an unchanged team. That's why Bust A Move 2027 is built for teams — Team Passes bring 3, 5, or 10 of your people to Hot Springs for as low as $249/seat. Culture before everything means everyone. 🎟️ Team passes in bio.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#BustAMove2027 #TeamCulture #ChildcareDirector #ChildcareCultureShockSummit #ECELeadership #CultureBeforeEverything</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Fri Aug 14 · Static · P4 — BTS — Summit planning</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">GRAPHIC/PHOTO</span>Real photo from Summit planning (venue walkthrough, planning board, or team call screenshot — Anj sources from Cita).</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>Behind the scenes: Summit planning mode. 📋 Venue walkthroughs, speaker calls, and a whole lot of sticky notes. Bust A Move 2027 is being built with the same intention we teach — culture first, always. Hot Springs, March 2027. 🎟️ in bio.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#BehindTheScenes #BustAMove2027 #EventPlanning #ChildcareCommunity #CultureBeforeEverything #ChildcareCultureShockSummit</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Fri Aug 14 · Carousel · P5 — 'The math on bringing your team to a conference'</span><span class="when">LinkedIn</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SLIDES</span>1) TITLE: The math on bringing your whole team to a summit. 2) Solo: one person inspired → momentum fades in two weeks. 3) Team: shared language, shared plan, execution from day one. 4) Leadership Shift Pass: 10 seats at $249/seat. 5) The ROI lens: one prevented resignation typically covers the entire pass. 6) CTA: Bust A Move 2027 — link in comments.</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — LINKEDIN</span>Owners ask whether sending a whole team to a conference is worth the line item. Run the math: one prevented resignation typically covers the entire team pass — before you count the value of a team that returns with one shared plan instead of one person's notes. Bust A Move 2027 team passes start at $249/seat. Link in the comments.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#ChildcareBusiness #ProfessionalDevelopment #TeamDevelopment #EarlyChildhoodEducation #Leadership #ECEConference</span></p>
+    </div>
+  </div>
+  <h3 style="margin-top:20px;font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold)">Week 3 · Aug 17–23 — Back-to-School promo</h3>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Mon Aug 17 · Reel / Video · P5 — B6 — Back-to-School promo launch</span><span class="when">IG+FB / LI</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SCRIPT</span>HOOK: 'Back to school. Back to culture. And the deepest ticket discount you'll see all year.' → [XX]% off every Bust A Move 2027 ticket, this week only, Aug 17–23. → This is the deepest rung of our pricing — every sale after this gets smaller. → Team passes are where the math gets silly. CTA: 'Code [CODE] at checkout, link in bio, ends Sunday night.'</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>🚨 BACK TO SCHOOL SALE: [XX]% off ALL Bust A Move 2027 tickets — this week only (Aug 17–23). This is the deepest discount we will offer, period. Every sale after this one gets smaller. Directors: grab your Team Pass while the math is this good. Code [CODE] at checkout — link in bio. Ends Sunday night. ⏰</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — LINKEDIN</span>Back-to-school week is budget-planning week for most childcare centers — so this is the window: [XX]% off all Bust A Move 2027 tickets through Sunday, Aug 23. It's the deepest discount on our calendar; every subsequent sale is smaller by design. If professional development for your team is on this year's budget, this is the week to lock it in. Code [CODE] — link in the comments.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#BackToSchoolSale #BustAMove2027 #ChildcareCultureShockSummit #ChildcareDirector #ECEConference #CultureBeforeEverything</span></p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#EarlyChildhoodEducation #ProfessionalDevelopment #ECEConference #ChildcareLeadership #Leadership #BackToSchool</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Tue Aug 18 · Carousel · P1 — 'Back to school, back to culture — 5 fall resets'</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SLIDES</span>1) TITLE: Back to school, back to culture — 5 resets for fall. 2) Reset the morning huddle (5 minutes, every day one week). 3) Re-onboard EVERYONE — not just new hires. 4) Pick one culture ritual and protect it weekly. 5) Retire one policy nobody respects. 6) Put appreciation on the calendar, not on vibes. 7) CTA: Ready for the full reset? Bust A Move 2027 — [XX]% off thru Sunday, code [CODE].</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>New school year, same culture problems? Not this fall. 🍂 Here are 5 culture resets childcare directors can run in the first two weeks of the school year — save this and start Monday. And while you're in reset mode: Bust A Move 2027 tickets are [XX]% off through Sunday with code [CODE]. Link in bio.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#BackToSchool #ChildcareDirector #ChildcareCulture #ECELeadership #TeacherRetention #BustAMove2027</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Wed Aug 19 · Text post · P5 — Promo — directors, bring your team this fall</span><span class="when">LinkedIn</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">POST COPY</span>A note for childcare directors and owners planning the fall: the Childcare Culture Shock Summit (Bust A Move 2027, Hot Springs, March 2027) is [XX]% off through Sunday — our deepest discount of the entire campaign, and it applies to team passes. If culture, retention, and leadership development are on your goals list this school year, the strongest version of this event is the one your whole team attends. Sale ends Sunday, Aug 23. Code [CODE]. Link in the comments.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#ProfessionalDevelopment #EarlyChildhoodEducation #ChildcareLeadership #ECEConference #Leadership #TeamDevelopment</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Thu Aug 20 · Reel · P1 — A3 — Stop hiring warm bodies</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SCRIPT</span>HOOK: 'Stop hiring warm bodies. You're paying for it twice.' → Desperate hires cost you once in churn and again in the culture damage they leave behind. → Hire slower, onboard deeper. → Add one culture-fit question to every interview: 'Tell me about a team you loved working on — what made it work?' CTA: 'Follow for childcare hiring and leadership strategy.'</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>Hiring in childcare is hard — but hiring warm bodies costs you twice: once in churn, once in the culture damage left behind. Hire slower. Onboard deeper. And add one culture-fit question to every interview (it's in the reel). Follow for childcare hiring and leadership strategy.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#ChildcareHiring #ChildcareDirector #StaffRetention #ECELeadership #DaycareOwner #ChildcareLeadership</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Fri Aug 21 · Static · P3 — Partner spotlight — CLAD Payments</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">GRAPHIC</span>COMMUNITY PARTNER: CLAD PAYMENTS (logo lockup on brand frame).</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>Community partner spotlight: CLAD Payments 🤝 Partners like CLAD make Bust A Move 2027 possible — backing the childcare centers putting culture before everything. Hot Springs, March 2027. 🎟️ Tickets in bio (Back-to-School pricing ends Sunday! Code [CODE]).</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#BustAMove2027 #ChildcarePartners #ECECommunity #ChildcareCultureShockSummit #ChildcareBusiness #CultureBeforeEverything</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Fri Aug 21 · Carousel · P1 — 'Hiring for culture fit in childcare' (A3-derived)</span><span class="when">LinkedIn</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SLIDES</span>1) TITLE: Hiring for culture fit in childcare. 2) The warm-body trap: filling a shift vs. building a team. 3) A bad hire costs twice — churn plus culture damage. 4) 3 culture-fit interview questions (loved team / hardest feedback received / what makes a bad day recoverable). 5) Onboarding IS retention — the first 30 days decide year one. 6) CTA: Follow Tacita for childcare culture leadership.</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — LINKEDIN</span>In childcare hiring, the most expensive words are 'we just need someone.' A warm-body hire costs twice — once in inevitable churn, once in what it does to the team while they're there. Three culture-fit questions worth adding to every interview are in the carousel. Hiring managers: what's your best culture-fit question?</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#Hiring #ChildcareLeadership #EarlyChildhoodEducation #TalentAcquisition #WorkplaceCulture #ECE</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Sun Aug 23 · Stories · P5 — Promo final-hours countdown</span><span class="when">IG+FB+LI</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">STORY FRAMES</span>Frame 1: 'FINAL HOURS ⏰ [XX]% off Bust A Move 2027 ends TONIGHT' + countdown sticker to 11:59pm. Frame 2: team-pass card + 'Code [CODE]' + link sticker to promo page. Frame 3: 'Prices go up at midnight. This exact discount never comes back.' + link sticker.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · N/A</span><span style="color:var(--muted);font-size:13px">Stories — no hashtags; use link + countdown stickers.</span></p>
+    </div>
+  </div>
+  <h3 style="margin-top:20px;font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold)">Week 4 · Aug 24–31</h3>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Mon Aug 24 · Reel / Video · P1 — B1 — Parents can feel your culture at the front door</span><span class="when">IG+FB / LI</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SCRIPT</span>HOOK: 'Parents can feel your culture before they reach the front desk.' → Drop-off energy is marketing — the greeting, the tone, the way teachers talk to each other. → Enrollment follows atmosphere; tours close themselves in buildings that feel right. → Your culture is your brand, whether you designed it or not. CTA: 'Follow for childcare culture strategy.'</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>Your childcare center's culture is doing your marketing — good or bad. Parents feel the drop-off energy, the way teachers greet each other, the tone at the front door. Enrollment follows atmosphere. Fix the culture and the tours close themselves. ✨ Follow for childcare culture and enrollment strategy.</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — LINKEDIN</span>Enrollment marketing in childcare gets attention. Culture gets enrollment. Parents make decisions on atmosphere — the drop-off energy, how teachers speak to each other, whether the front door feels warm or tense. Every tour is walking through your culture before anyone mentions curriculum. Owners: your culture is your brand, whether you designed it or not. What do parents feel in your building's first 30 seconds?</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#ChildcareMarketing #ChildcareEnrollment #ChildcareCulture #DaycareOwner #ChildcareDirector #EarlyChildhoodEducation</span></p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#EarlyChildhoodEducation #CustomerExperience #WorkplaceCulture #ChildcareLeadership #Leadership #ECE</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Tue Aug 25 · Carousel · P2 — 🎤 KEYNOTE DROP — Dr. Mia Young</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SLIDES</span>1) COVER: 'KEYNOTE ANNOUNCED' (red/gold, high drama). 2) DR. MIA YOUNG — large portrait. 3) [Credential/bio line — REQUIRED FROM CITA before design ⚠️]. 4) What she's bringing to the Hot Springs stage. 5) Bust A Move 2027 · March 2027 · Hot Springs, AR. 6) CTA: Tickets + team passes in bio.</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>🎤 KEYNOTE ANNOUNCED: Dr. Mia Young is headlining Bust A Move 2027. [One-line credential — from Cita ⚠️]. The Childcare Culture Shock Summit keynote stage just got real. March 2027, Hot Springs, Arkansas — and the rest of the speaker lineup starts dropping next week. 🎟️ Tickets in bio.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#BustAMove2027 #KeynoteSpeaker #ChildcareCultureShockSummit #ECEConference #ChildcareLeadership #CultureBeforeEverything</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Wed Aug 26 · Text post · P1 — Your handbook is not your culture (B3-derived)</span><span class="when">LinkedIn</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">POST COPY</span>Your handbook is not your culture. Culture is what happens when the handbook isn't watching — how a teacher gets treated after calling out sick, whether feedback flows up as easily as it flows down, what gets laughed at in the break room. You can have a beautiful 40-page handbook and a building people are quietly planning to leave. Policy sets the floor. Culture sets the experience. Leaders: name one unwritten rule in your workplace that shapes behavior more than anything in the official documentation.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#WorkplaceCulture #ChildcareLeadership #Leadership #EarlyChildhoodEducation #HR #ECE</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Thu Aug 27 · Reel · P2 — B4 — What happens in Hot Springs</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SCRIPT</span>HOOK: 'Three days in Hot Springs that your center will feel for three years.' → This is not a sit-and-take-notes conference — you work ON your center while you're there. → Workshops, real talk, and a room full of people who get it. → You leave with a culture plan your whole team can run. CTA: 'Tickets in bio.'</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>Hot Springs, Arkansas. March 2027. Three days your childcare center will feel for years. Bust A Move isn't a sit-and-take-notes conference — you leave with a culture plan your whole team can actually run. Keynote: Dr. Mia Young. 🎟️ Tickets in bio.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#HotSprings #BustAMove2027 #ChildcareCultureShockSummit #ECEConference #ChildcareDirector #CultureBeforeEverything</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Fri Aug 28 · Static · P3 — Community testimonial</span><span class="when">IG+FB</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">GRAPHIC</span>Quote card: [REAL quote from a community member — sourced from Cita / the Skool community ⚠️ do not fabricate]. Name + role + center type.</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>This is why we do it. 💬 [Name] on what culture-first leadership changed in their center. Bust A Move 2027 is where stories like this start — March 2027, Hot Springs. 🎟️ Tickets in bio.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#ChildcareCommunity #CultureBeforeEverything #BustAMove2027 #ChildcareDirector #ECECommunity #ChildcareCultureShockSummit</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Fri Aug 28 · Carousel · P2 — 'Bust A Move 2027 — what the agenda looks like'</span><span class="when">LinkedIn</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SLIDES</span>1) TITLE: Bust A Move 2027 — what the agenda looks like. 2) Keynote: Dr. Mia Young. 3) Speaker lineup dropping weekly through fall 👀. 4) Culture transformation workshops + real-talk sessions. 5) Built for teams — passes from $249/seat. 6) Hot Springs, AR · March 2027 · link in comments.</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — LINKEDIN</span>The Childcare Culture Shock Summit agenda is taking shape: keynote Dr. Mia Young, a speaker lineup dropping weekly through the fall, and workshop tracks built around culture transformation, leadership, and retention. Designed for teams, not just directors — passes from $249/seat. March 2027, Hot Springs. Link in the comments.</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#ECEConference #ProfessionalDevelopment #EarlyChildhoodEducation #Leadership #ChildcareLeadership #Conference</span></p>
+    </div>
+  </div>
+  <div class="acc">
+    <button class="acc-head" aria-expanded="false"><span>Mon Aug 31 · Reel / Video · P1 — B2 — The exit-interview question every director skips</span><span class="when">IG+FB / LI</span><span class="chev">›</span></button>
+    <div class="acc-body">
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">SCRIPT</span>HOOK: 'The exit interview question every director skips — and it's the only one that matters.' → Skip 'why are you leaving' — you'll get the polite answer. → Ask: 'When did you first start looking?' → The gap between that moment and the resignation letter is your culture data. CTA: 'Comment the exit that taught you the most.'</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — IG/FB</span>The exit interview question childcare directors skip: 'When did you first start looking?' The answer tells you the exact moment your culture lost them — and that's the data that prevents the next resignation. Drop a 💬 if you're adding this to your process.</p>
+      <p style="margin-bottom:10px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2px">CAPTION — LINKEDIN</span>Most exit interviews ask 'why are you leaving?' and get the polite answer. The question that produces real data: 'When did you first start looking?' The gap between that moment and the resignation letter is where your culture problem lives — a skipped one-on-one, an unresolved conflict, a season of feeling invisible. Retention work starts with finding that moment while the person is still on your team. HR and leaders: what's the most useful exit-interview question you've ever asked?</p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · IG/FB</span><span style="color:var(--muted);font-size:13px">#ExitInterview #TeacherRetention #ChildcareDirector #ECELeadership #ChildcareLeadership #StaffTurnover</span></p>
+      <p style="margin-bottom:6px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px">HASHTAGS · LINKEDIN</span><span style="color:var(--muted);font-size:13px">#EmployeeRetention #HR #Leadership #WorkplaceCulture #EarlyChildhoodEducation #ECE</span></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Childcare Culture &amp; Co. · Organic Social Media Content Program PRD v3 · Signed off Jul 6, 2026 · Owner: Anj · Approver: Cita · ™ marks are aspirational styling, not legally filed.
+</footer>
 </main>
 </div>
 
 <script>
-// Phase accordion
-document.querySelectorAll('.phase-head').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const phase = btn.parentElement;
-    const open = phase.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open);
+  // Accordion
+  document.querySelectorAll('.acc-head').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var acc = btn.parentElement;
+      var open = acc.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   });
-});
 
-// Checklist progress (in-memory only)
-const items = document.querySelectorAll('.check-item');
-const fill = document.getElementById('progressFill');
-const label = document.getElementById('progressLabel');
-function updateProgress(){
-  const done = document.querySelectorAll('.check-item.done').length;
-  fill.style.width = (done/items.length*100)+'%';
-  label.textContent = done+' / '+items.length+' complete';
-}
-items.forEach(it=>it.addEventListener('click',()=>{ it.classList.toggle('done'); updateProgress(); }));
+  // Scroll-spy
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a.toc'));
+  var sections = links.map(function(l){ return document.querySelector(l.getAttribute('href')); });
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('active'); });
+        var idx = sections.indexOf(e.target);
+        if(idx > -1) links[idx].classList.add('active');
+      }
+    });
+  }, {rootMargin:'-20% 0px -70% 0px'});
+  sections.forEach(function(s){ if(s) spy.observe(s); });
 
-// Scroll-spy
-const links = document.querySelectorAll('#toc a');
-const sections = [...links].map(a=>document.querySelector(a.getAttribute('href')));
-const spy = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      links.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
-    }
+  // Checklist (in-memory only)
+  var checks = document.querySelectorAll('.check');
+  var fill = document.getElementById('prog-fill');
+  var txt = document.getElementById('prog-txt');
+  function update(){
+    var done = document.querySelectorAll('.check.done').length;
+    fill.style.width = (done / checks.length * 100) + '%';
+    txt.textContent = done + ' / ' + checks.length;
+  }
+  checks.forEach(function(c){
+    function toggle(){ c.classList.toggle('done'); update(); }
+    c.addEventListener('click', toggle);
+    c.addEventListener('keydown', function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); } });
   });
-},{rootMargin:'-20% 0px -70% 0px'});
-sections.forEach(s=>s&&spy.observe(s));
-
-// Scroll reveal
-const rev = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vis'); rev.unobserve(e.target); } });
-},{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>rev.observe(el));
 </script>
 </body>
 </html>
